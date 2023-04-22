@@ -1,0 +1,60 @@
+models:
+  Produit:
+    nom: string:300
+    description: longtext
+    image: longtext
+    prix: integer
+    stock: boolean
+    type_id: id foreign
+    taille_id: id foreign
+    relationships:
+      belongsTo: Type, Taille
+      hasOne: Panier
+
+  Type:
+    nom: string:100
+    relationships:
+      hasMany: Produit
+
+  Panier:
+    produit_id: id foreign
+    user_id: id foreign
+    statut: boolean
+    relationships:
+      hasMany: Produit
+      belongsTo: Commande, User
+
+  Commande:
+    panier_id: id foreign
+    user_id: id foreign
+    statut: boolean
+    relationships:
+      hasMany: Panier
+      belongsTo: User
+
+  Taille:
+    nom: string:100
+    description: longtext
+    relationships:
+      hasMany: Produit
+
+
+
+controllers:
+  produit:
+    resource
+
+  type:
+    resource
+
+  panier:
+    resource
+
+  user:
+    resource
+
+  taille:
+    resource
+
+  commande:
+    resource

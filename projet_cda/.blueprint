@@ -1,0 +1,63 @@
+created:
+    - app/Http/Controllers/produitController.php
+    - app/Http/Controllers/typeController.php
+    - app/Http/Controllers/panierController.php
+    - app/Http/Controllers/userController.php
+    - app/Http/Controllers/tailleController.php
+    - app/Http/Controllers/commandeController.php
+    - database/factories/ProduitFactory.php
+    - database/factories/TypeFactory.php
+    - database/factories/PanierFactory.php
+    - database/factories/CommandeFactory.php
+    - database/factories/TailleFactory.php
+    - database/migrations/2023_03_12_173001_create_produits_table.php
+    - database/migrations/2023_03_12_173002_create_types_table.php
+    - database/migrations/2023_03_12_173003_create_paniers_table.php
+    - database/migrations/2023_03_12_173004_create_commandes_table.php
+    - database/migrations/2023_03_12_173005_create_tailles_table.php
+    - app/Models/Produit.php
+    - app/Models/Type.php
+    - app/Models/Panier.php
+    - app/Models/Commande.php
+    - app/Models/Taille.php
+    - tests/Feature/Http/Controllers/produitControllerTest.php
+    - tests/Feature/Http/Controllers/typeControllerTest.php
+    - tests/Feature/Http/Controllers/panierControllerTest.php
+    - tests/Feature/Http/Controllers/userControllerTest.php
+    - tests/Feature/Http/Controllers/tailleControllerTest.php
+    - tests/Feature/Http/Controllers/commandeControllerTest.php
+    - app/Http/Requests/produitStoreRequest.php
+    - app/Http/Requests/produitUpdateRequest.php
+    - resources/views/produit/index.blade.php
+    - resources/views/produit/create.blade.php
+    - resources/views/produit/show.blade.php
+    - resources/views/produit/edit.blade.php
+updated:
+    - routes/web.php
+skipped:
+    - resources/views/type/index.blade.php
+    - resources/views/type/create.blade.php
+    - resources/views/type/show.blade.php
+    - resources/views/type/edit.blade.php
+    - resources/views/panier/index.blade.php
+    - resources/views/panier/create.blade.php
+    - resources/views/panier/show.blade.php
+    - resources/views/panier/edit.blade.php
+    - resources/views/user/index.blade.php
+    - resources/views/user/create.blade.php
+    - resources/views/user/show.blade.php
+    - resources/views/user/edit.blade.php
+    - resources/views/taille/index.blade.php
+    - resources/views/taille/create.blade.php
+    - resources/views/taille/show.blade.php
+    - resources/views/taille/edit.blade.php
+    - resources/views/commande/index.blade.php
+    - resources/views/commande/create.blade.php
+    - resources/views/commande/show.blade.php
+    - resources/views/commande/edit.blade.php
+models:
+    Produit: { nom: 'string:300', description: longtext, image: longtext, prix: integer, stock: boolean, type_id: 'id foreign', taille_id: 'id foreign', relationships: { belongsTo: 'Type, Taille', hasOne: Panier } }
+    Type: { nom: 'string:100', relationships: { hasMany: Produit } }
+    Panier: { produit_id: 'id foreign', user_id: 'id foreign', statut: boolean, relationships: { hasMany: Produit, belongsTo: 'Commande, User' } }
+    Commande: { panier_id: 'id foreign', user_id: 'id foreign', statut: boolean, relationships: { hasMany: Panier, belongsTo: User } }
+    Taille: { nom: 'string:100', description: longtext, relationships: { hasMany: Produit } }
