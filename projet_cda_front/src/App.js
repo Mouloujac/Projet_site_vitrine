@@ -12,6 +12,8 @@ import Admin from './pages/Admin/Admin';
 import axios from './axios';
 import Cart from './pages/Cart/Cart';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider } from 'react-redux';
+import store from './redux/store'
 
 
 
@@ -53,17 +55,20 @@ const App = () => {
       />
         <Header user={user} logout={handleLogout} />
         <div className='mx-5 py-5'>
-        <Routes>
-          <Route path="/" element={<Home user={user} />}/>
-          <Route path="/admin" element={<Admin user={user} />} />
-          <Route path="/home" element={<Home user={user} />}/>
-          <Route path="/panier" element={<Cart user={user} />}/>
-          <Route element={<ProtectedRoute user={user} />}>
-            <Route path="/account" element={<Account user={user} setUser={setUser} />} />
-          </Route>
-          <Route path="/login" element={<Login setUser={setUser} />}/>
-          <Route path="/inscription" element={<Inscription setUser={setUser} />}/>
-        </Routes>
+        
+          <Routes>
+              <Route path="/admin" element={<Admin user={user} />} />
+              <Route path="/" element={<Home user={user} />}/>
+              <Route path="/home" element={<Home user={user} />}/>
+              <Route path="/panier" element={<Cart user={user} />}/>
+              <Route element={<ProtectedRoute user={user} />}>
+                <Route path="/account" element={<Account user={user} setUser={setUser} />} />
+              </Route>
+              <Route path="/login" element={<Login user={user} setUser={setUser} />}/>
+              <Route path="/inscription" element={<Inscription setUser={setUser} />}/>
+            
+          </Routes>
+        
         </div>
         </>
       ) : (

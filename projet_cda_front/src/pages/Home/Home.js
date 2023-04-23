@@ -8,7 +8,7 @@ const Home = ({ user }) => {
 
 
   return (
-    <ProductsListe user={user} />
+    <ProductsListe user={user}  />
   );
 }
 
