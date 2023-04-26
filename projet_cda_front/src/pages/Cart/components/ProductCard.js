@@ -2,11 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeItemFromCart } from '../../../redux/cartSlice';
 
 const ProductCart = () => {
-  const cartItems = useSelector((state) => state.cart.items);
+  const cartItems = useSelector((state) => JSON.parse(sessionStorage.getItem('Produit')));
   const dispatch = useDispatch();
-
+  
   const removeFromCart = (productId) => {
     dispatch(removeItemFromCart(productId));
+    const cart = JSON.parse(sessionStorage.getItem('Produit'));
+    const newCart = cart.filter(item => item.id !== productId);
+    sessionStorage.setItem('Produit', JSON.stringify(newCart));
   };
 
   return (
