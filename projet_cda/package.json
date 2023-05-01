@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "formik": "^2.2.9"
+    "formik": "^2.2.9",
+    "react-stripe-checkout": "^2.6.3"
   }
 }
