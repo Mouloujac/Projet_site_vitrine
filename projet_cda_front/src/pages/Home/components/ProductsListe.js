@@ -34,7 +34,7 @@ const ProductsListe = ({ user }) => {
       <div className="row">
         {currentProducts.map((produit) => (
           <div className="col-md-3" key={produit.id}>
-            <ProductCard produit={produit} user={user} />
+            <ProductCard produit={produit} user={user} setProduits={setProduits}/>
           </div>
         ))}
       </div>

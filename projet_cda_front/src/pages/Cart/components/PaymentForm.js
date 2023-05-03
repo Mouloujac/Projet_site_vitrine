@@ -18,6 +18,9 @@ function PaymentForm() {
             amount: totalPrice * 100, // Amount in cents
             
             });
+            for (let i = 0; i<cartItems.length; i++){
+                
+            }
             sessionStorage.removeItem('Produit'); // supprimer le panier
 
             console.log(token);

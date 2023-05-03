@@ -27,7 +27,6 @@ class commandeController extends Controller
     {
         $commande = Commande::create($request->validated());
 
-        $request->session()->flash('commande.id', $commande->id);
 
         return redirect()->route('commande.index');
     }
@@ -46,7 +45,7 @@ class commandeController extends Controller
     {
         $commande->update($request->validated());
 
-        $request->session()->flash('commande.id', $commande->id);
+       
 
         return redirect()->route('commande.index');
     }

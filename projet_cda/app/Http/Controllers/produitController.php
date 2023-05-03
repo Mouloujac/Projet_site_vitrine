@@ -13,7 +13,7 @@ class produitController extends Controller
 {
     public function index(Request $request)
     {
-        $produits = Produit::orderBy('created_at', 'desc')->get();
+        $produits = Produit::where('stock', true)->orderBy('created_at', 'desc')->get();
         return response()->json($produits);
     }
 
@@ -42,8 +42,6 @@ class produitController extends Controller
     public function update(produitUpdateRequest $request, produit $produit)
     {
         $produit->update($request->validated());
-
-        
 
         return response()->json($produit);
     }
