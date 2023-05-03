@@ -18,7 +18,7 @@ const ProductCart = () => {
       image: product.image,
       taille_id: product.taille_id,
       type_id: product.type_id,
-      stock: false,
+      stock: true,
     })
   };
 
