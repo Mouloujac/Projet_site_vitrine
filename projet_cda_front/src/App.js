@@ -7,6 +7,7 @@ import Home from './pages/Home/Home';
 import Account from './pages/Account/Account';
 import Login from './pages/Auth/Login';
 import Inscription from './pages/Auth/Inscription';
+import Product from './pages/Product/Product'
 import ProtectedRoute from './components/ProtectedRoute';
 import Admin from './pages/Admin/Admin';
 import axios from './axios';
@@ -23,8 +24,9 @@ const App = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
+    
     axios.get('/api/user').then((response) => {
       setUser(response.data);
     }).catch((error) => {
@@ -32,6 +34,7 @@ const App = () => {
     }).finally(() => {
       setLoading(false);
     })
+    
   }, [navigate])
 
   const handleLogout = () => {
@@ -66,7 +69,7 @@ const App = () => {
               </Route>
               <Route path="/login" element={<Login user={user} setUser={setUser} />}/>
               <Route path="/inscription" element={<Inscription setUser={setUser} />}/>
-            
+              <Route path="/produits/:id" element={<Product  user={user} setUser={setUser} />} />
           </Routes>
         
         </div>

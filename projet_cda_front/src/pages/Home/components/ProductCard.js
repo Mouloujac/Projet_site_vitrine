@@ -1,13 +1,16 @@
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Nav, } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { addToCart } from '../../../redux/cartSlice';
 import { replaceCart } from '../../../redux/cartSlice'
 import  axios  from '../../../axios';
+import { useNavigate } from "react-router-dom";
 
 const ProductCard =  ({ produit, setProduits }) => {
-  
+   
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
   const handleAddToCart =  (produit) => {
@@ -24,7 +27,8 @@ const ProductCard =  ({ produit, setProduits }) => {
         // Récupérer les nouveaux produits depuis l'API et mettre à jour l'état
         axios.get('/produits')
           .then((response) => {
-            setProduits(response.data);
+            const filteredProducts = response.data.filter((produit) => produit.stock === true);
+            setProduits(filteredProducts);
           })
           .catch((error) => {
             console.error(error);
@@ -41,7 +45,7 @@ const ProductCard =  ({ produit, setProduits }) => {
     }else{
       Panier = []
     }
-  
+    
     
     Panier.push(produit);
     sessionStorage.setItem('Produit',JSON.stringify(Panier));
@@ -49,7 +53,12 @@ const ProductCard =  ({ produit, setProduits }) => {
     dispatch(replaceCart(Panier));
     toast.success('Le produit a été ajouté au panier');
   }
+ 
+  function handleClick() {
+    navigate(`/produits/${produit.id}`);
+  }
   
+
   return (
     <Card style={{ width: '15rem' }}>
       <Card.Img variant="top" src={produit.image} alt={produit.nom} />
@@ -60,6 +69,8 @@ const ProductCard =  ({ produit, setProduits }) => {
         <Button variant="primary" onClick={() => handleAddToCart(produit)}>
           Ajouter au panier
         </Button>
+        <button onClick={handleClick}>Voir le produit</button>
+
       </Card.Body>
     </Card>
   );

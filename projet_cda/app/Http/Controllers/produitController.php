@@ -13,7 +13,7 @@ class produitController extends Controller
 {
     public function index(Request $request)
     {
-        $produits = Produit::where('stock', true)->orderBy('created_at', 'desc')->get();
+        $produits = Produit::orderBy('created_at', 'desc')->get();
         return response()->json($produits);
     }
 
@@ -29,9 +29,10 @@ class produitController extends Controller
         return response()->json($produit);
     }
 
-    public function show(Request $request, produit $produit): View
+    public function show(Request $request, $id)
     {
-        return view('produit.show', compact('produit'));
+        $produit = Produit::findOrFail($id);
+        return response()->json($produit);
     }
 
     public function edit(Request $request, produit $produit): View

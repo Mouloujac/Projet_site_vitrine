@@ -2,7 +2,7 @@ import React from 'react';
 import ProductCard from './ProductCard';
 import { useState, useEffect } from 'react';
 import axios from '../../../axios';
-import { Pagination } from 'react-bootstrap';
+import { CardGroup, Pagination } from 'react-bootstrap';
 
 const ProductsListe = ({ user }) => {
 
@@ -12,8 +12,8 @@ const ProductsListe = ({ user }) => {
       
   useEffect(() => {
     axios.get('/produits').then((response) => {
-      setProduits(response.data);
-      
+      const filteredProducts = response.data.filter((produit) => produit.stock === true);
+      setProduits(filteredProducts);
     }).catch((error) => {
       setProduits([])
       console.error(error);
@@ -33,9 +33,9 @@ const ProductsListe = ({ user }) => {
     <div>
       <div className="row">
         {currentProducts.map((produit) => (
-          <div className="col-md-3" key={produit.id}>
+          <CardGroup className="col-md-3" key={produit.id}>
             <ProductCard produit={produit} user={user} setProduits={setProduits}/>
-          </div>
+          </CardGroup>
         ))}
       </div>
       <div className="text-center">
