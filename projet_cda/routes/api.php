@@ -22,7 +22,8 @@ Route::get('/produits', 'App\Http\Controllers\produitController@index');
 Route::post('/produits', 'App\Http\Controllers\produitController@store');
 Route::put('/produits/{produit}', 'App\Http\Controllers\produitController@update');
 
-Route::post('/panier', 'App\Http\Controllers\panierController@store');
+Route::post('/paniers', 'App\Http\Controllers\panierController@store');
 Route::get('/taille', 'App\Http\Controllers\tailleController@index');
 Route::get('/type', 'App\Http\Controllers\typeController@index');
 Route::post('/stripe/payment', 'App\Http\Controllers\StripeController@makePayment');
+Route::post('/commandes', 'App\Http\Controllers\commandeController@store');

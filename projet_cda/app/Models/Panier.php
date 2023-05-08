@@ -20,6 +20,7 @@ class Panier extends Model
         'produit_id',
         'user_id',
         'statut',
+        'commande_id',
     ];
 
     /**
@@ -30,9 +31,11 @@ class Panier extends Model
     protected $casts = [
         'id' => 'integer',
         'produit_id' => 'integer',
+        'commande_id' => 'integer',
         'user_id' => 'integer',
         'statut' => 'boolean',
     ];
+    
 
     public function produits(): HasMany
     {
@@ -43,7 +46,6 @@ class Panier extends Model
     {
         return $this->belongsTo(Commande::class);
     }
-
 
     public function produit(): BelongsTo
     {

@@ -17,7 +17,6 @@ class Commande extends Model
      * @var array
      */
     protected $fillable = [
-        'panier_id',
         'user_id',
         'statut',
     ];
@@ -29,7 +28,6 @@ class Commande extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'panier_id' => 'integer',
         'user_id' => 'integer',
         'statut' => 'boolean',
     ];

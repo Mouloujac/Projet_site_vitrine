@@ -45,7 +45,7 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
       [name]: value,
     });
   };
-
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios

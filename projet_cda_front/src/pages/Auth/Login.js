@@ -30,6 +30,8 @@ const Login = ({user, setUser }) => {
       toast.success("Connexion réussie");
 
       const response = await axios.get('/api/user');
+      console.log(response.data);
+      
       setUser(response.data);
       setAuthenticated(true);
       navigate("/")

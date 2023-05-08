@@ -1,6 +1,7 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 import Header from './components/Header';
 import Home from './pages/Home/Home';
@@ -22,15 +23,15 @@ import store from './redux/store'
 const App = () => {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+  const cartItems = useSelector((state) => JSON.parse(sessionStorage.getItem('Produit')));
   useEffect(() => {
-    
+
     axios.get('/api/user').then((response) => {
       setUser(response.data);
     }).catch((error) => {
-      setUser({})
+      setUser()
     }).finally(() => {
       setLoading(false);
     })
@@ -39,7 +40,7 @@ const App = () => {
 
   const handleLogout = () => {
     axios.post('/logout');
-    setUser({});
+    setUser();
     navigate('/login');
   }
 
@@ -63,7 +64,7 @@ const App = () => {
               <Route path="/admin" element={<Admin user={user} />} />
               <Route path="/" element={<Home user={user} />}/>
               <Route path="/home" element={<Home user={user} />}/>
-              <Route path="/panier" element={<Cart user={user} />}/>
+              <Route path="/panier" element={ <Cart user={user} {...cartItems}/> } />
               <Route element={<ProtectedRoute user={user} />}>
                 <Route path="/account" element={<Account user={user} setUser={setUser} />} />
               </Route>

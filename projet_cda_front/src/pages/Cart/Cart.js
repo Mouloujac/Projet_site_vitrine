@@ -1,16 +1,31 @@
 import { useSelector } from 'react-redux';
 import PaymentForm from './components/PaymentForm';
 import ProductCard from './components/ProductCard';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Cart = (user) => {
-  const cartItems = useSelector((state) => state.cart.items);
+  const navigate = useNavigate();
+  const cartItems = useSelector((state) => JSON.parse(sessionStorage.getItem('Produit')));
 
-  return (
-          <>
-            <ProductCard   cartItems={cartItems} />
-            <PaymentForm   user={user} cartItems={cartItems} />
-          </>
-  );
+  useEffect(() => {
+    
+    if (!cartItems || cartItems == null || cartItems.length == 0) {
+      navigate('/');
+    }
+  }, []);
+
+  if (cartItems && cartItems.length > 0) {
+    return (
+      <>
+        <ProductCard />
+        <PaymentForm user={user} />
+      </>
+    );
+  }
+  
+  return null;
 };
 
 export default Cart;
+

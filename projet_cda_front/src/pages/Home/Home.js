@@ -5,8 +5,7 @@ import ProductsListe from './components/ProductsListe';
 
 
 const Home = ({ user }) => {
-
-
+  
   return (
     <ProductsListe user={user}  />
   );
