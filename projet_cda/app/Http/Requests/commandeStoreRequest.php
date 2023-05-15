@@ -20,7 +20,7 @@ class commandeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'panier_id' => ['required', 'integer', 'exists:paniers,id'],
+            'id' => ['required', 'integer'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
             'statut' => ['required'],
         ];

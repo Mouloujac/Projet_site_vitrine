@@ -26,4 +26,5 @@ Route::post('/paniers', 'App\Http\Controllers\panierController@store');
 Route::get('/taille', 'App\Http\Controllers\tailleController@index');
 Route::get('/type', 'App\Http\Controllers\typeController@index');
 Route::post('/stripe/payment', 'App\Http\Controllers\StripeController@makePayment');
-Route::post('/commandes', 'App\Http\Controllers\commandeController@store');
+
+Route::get('/commandes', 'App\Http\Controllers\commandeController@index');

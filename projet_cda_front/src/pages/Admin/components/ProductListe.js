@@ -47,7 +47,7 @@ const ProductsListe = ({ user }) => {
       <Button variant="primary" onClick={handleShow}>
         Ajouter produit
       </Button>
-      <Table striped bordered hover repsponsive>
+      <Table striped bordered hover responsive>
         <thead>
           <tr>
             <th>Supprimer</th>

@@ -21,7 +21,7 @@ class panierStoreRequest extends FormRequest
     {
         return [
             'produit_id' => ['required', 'integer', 'exists:produits,id'],
-            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'commande_id' => ['required', 'integer', 'exists:commandes,id'],
             'statut' => ['required'],
         ];
     }

@@ -17,6 +17,7 @@ class Commande extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'user_id',
         'statut',
     ];

@@ -33,7 +33,7 @@ const ProductsListe = ({ user }) => {
     <div>
       <div className="row">
         {currentProducts.map((produit) => (
-          <CardGroup className="col-md-3" key={produit.id}>
+          <CardGroup className="col-md-2" key={produit.id}>
             <ProductCard produit={produit} user={user} setProduits={setProduits}/>
           </CardGroup>
         ))}

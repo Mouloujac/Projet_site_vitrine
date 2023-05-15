@@ -1,6 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from 'react';
 import ProductsListe from './components/ProductListe';
+import CommandesListe from './components/CommandesListe';
 import axios from "./../../axios";
 import CreateForm from './components/CreateForm';
 
@@ -24,6 +25,7 @@ const Admin = ({ user }) => {
   return (
     <>
       <ProductsListe user={user} updateProducts={updateProducts}/>
+      <CommandesListe {...user} />
       
     </>
   );

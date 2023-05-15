@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('paniers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('produit_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('commande_id')->constrained();
             $table->boolean('statut');
             $table->timestamps();
         });

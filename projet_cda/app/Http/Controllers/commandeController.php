@@ -11,11 +11,11 @@ use Illuminate\View\View;
 
 class commandeController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request)
     {
         $commandes = Commande::all();
 
-        return view('commande.index', compact('commandes'));
+        return response()->json($commandes);
     }
 
     public function create(Request $request): View
@@ -23,13 +23,14 @@ class commandeController extends Controller
         return view('commande.create');
     }
 
-    public function store(commandeStoreRequest $request): RedirectResponse
-    {
-        $commande = Commande::create($request->validated());
+    public function store(commandeStoreRequest $request)
+{
+    $data = $request->validated();
+    $commande = Commande::create($data);
 
+    return response()->json($commande);
+}
 
-        return redirect()->route('commande.index');
-    }
 
     public function show(Request $request, commande $commande): View
     {
