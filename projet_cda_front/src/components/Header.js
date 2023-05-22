@@ -167,12 +167,12 @@ const Header = ({ user, logout }) => {
                 </li>
               </div>
               <div id="navLog">
-                <li className="log">
+                <li className="log" id="login">
                   <Link to="/login" className="nav-link">
                     Connexion
                   </Link>
                 </li>
-                <li className="log">
+                <li className="log" id="signIn">
                   <Link to="/inscription" className="nav-link">
                     Inscription
                   </Link>

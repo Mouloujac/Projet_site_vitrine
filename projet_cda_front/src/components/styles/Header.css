@@ -148,26 +148,39 @@
 
 .log {
   border: 2px solid #f0f5f5;
-  border-radius: 20px;
+  border-radius: 5px;
   color: #fff;
   transition: .3s;
   padding-left: 6px;
   padding-right: 6px;
-  margin-right: 20px;
+  margin-right: 5px;
   width: 130px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.log>a{
+  font-size: 1.3rem !important;
+  text-align: center;
 }
 
-.log:hover {
-  box-shadow: inset -3px -3px  black;
-  transition: .3s;
+#signIn {
+  background-color: #46cf73;
   
 }
 
-#navLog > li:nth-child(1) > a:hover{
-  font-size:1.4rem;
+#signIn:hover {
+  background-color: #2e9c4f;
+  
 }
-
-
+#signIn:hover > a {
+  color: #ffffff !important;
+}
+#signIn > a {
+  color: #19552c !important;
+}
 
 @media screen and (max-width: 750px) {
   #main-menu {
