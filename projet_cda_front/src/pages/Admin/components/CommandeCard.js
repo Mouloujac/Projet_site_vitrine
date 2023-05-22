@@ -5,7 +5,7 @@ const CommandeCard = ({ commande, user, setCommandes, updateCommandes }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  
   const handleUpdate = async (updateCommande) => {
     try {
       handleClose();
@@ -23,6 +23,12 @@ const CommandeCard = ({ commande, user, setCommandes, updateCommandes }) => {
             {commande.id} 
           </td>
           <td>{commande.user_id}</td>
+          {commande.paniers.map(panier =>(
+            <p key={panier.id}>
+            <td>{panier.produit.nom}</td>
+            <td>{panier.produit.prix}</td>
+            </p>
+            ))}
         
         </tr>
     

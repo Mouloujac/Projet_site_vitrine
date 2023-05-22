@@ -13,7 +13,7 @@ class produitController extends Controller
 {
     public function index(Request $request)
     {
-        $produits = Produit::orderBy('created_at', 'desc')->get();
+        $produits = Produit::with('taille')->orderBy('created_at', 'desc')->get();
         return response()->json($produits);
     }
 

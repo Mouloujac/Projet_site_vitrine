@@ -13,9 +13,10 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Admin from './pages/Admin/Admin';
 import axios from './axios';
 import Cart from './pages/Cart/Cart';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css"
 import { Provider } from 'react-redux';
 import store from './redux/store'
+
 
 
 
@@ -30,6 +31,7 @@ const App = () => {
 
     axios.get('/api/user').then((response) => {
       setUser(response.data);
+      
     }).catch((error) => {
       setUser()
     }).finally(() => {
@@ -58,10 +60,10 @@ const App = () => {
         pauseOnHover={false}
       />
         <Header user={user} logout={handleLogout} />
-        <div className='mx-5 py-5'>
+        <div class='bodyFrame'>
         
           <Routes>
-              <Route path="/admin" element={<Admin user={user} />} />
+              <Route path="/admin" element={<Admin user={user} setUser={setUser}/>} />
               <Route path="/" element={<Home user={user} />}/>
               <Route path="/home" element={<Home user={user} />}/>
               <Route path="/panier" element={ <Cart user={user} {...cartItems}/> } />

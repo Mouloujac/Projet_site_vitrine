@@ -8,7 +8,7 @@ const CommandesListe = ({ user }) => {
   useEffect(() => {
     axios.get('api/commandes')
       .then(response => {
-        console.log(response)
+        
         setCommandes(response.data);
       })
       .catch(error => {

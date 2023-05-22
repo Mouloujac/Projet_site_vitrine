@@ -1,4 +1,3 @@
-import { Card, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -60,26 +59,63 @@ const ProductCard = ({ produit, setProduits }) => {
   function handleClick() {
     navigate(`/produits/${produit.id}`);
   }
-
+  // console.log(produit)
   return (
-    <Card style={{ width: "15rem" }} className="product-card">
-      <Card.Img variant="top" src={produit.image} alt={produit.nom} />
-      <Card.Body>
-        <Card.Title>{produit.nom}</Card.Title>
-        <Card.Text>{produit.description}</Card.Text>
-        <Card.Text>Prix : {produit.prix} €</Card.Text>
-        <div className="d-flex">
-          <button
-            variant="primary"
-            onClick={() => handleAddToCart(produit)}
-            className="add-to-cart-btn"
-          >
-            ➕
-          </button>
-          <button onClick={handleClick}>👁️‍🗨️</button>
+      <div class="page-inner">
+        <div class="row">
+          <div class="el-wrapper">
+            <div class="box-up">
+              <img
+                class="img"
+                src="/dress.png"
+                alt=""
+              />
+              <div class="img-info">
+                <div class="info-inner">
+                  <span class="p-name">{produit.nom}</span>
+                  <span class="p-company">{produit.taille.nom}</span>
+                </div>
+                <div class="a-size">
+                   <span class="size">{produit.description}</span>
+                   <button onClick={handleClick}>👁️‍🗨️</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="box-down">
+              <div class="h-bg">
+                <div class="h-bg-inner"></div>
+              </div>
+
+              <a class="cart" href="#">
+                <span class="price">$120</span>
+                <span class="add-to-cart">
+                  <span class="txt" onClick={() => handleAddToCart(produit)}>Add in cart</span>
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
-      </Card.Body>
-    </Card>
+      </div>
+    
+    // <Card style={{ width: "15rem" }} className="product-card">
+    //   <Card.Img variant="top" src={produit.image} alt={produit.nom} />
+    //   <Card.Body>
+    //     <Card.Title>{produit.nom}</Card.Title>
+    //     <Card.Text>{produit.description}</Card.Text>
+    //     <Card.Text>Prix : {produit.prix} €</Card.Text>
+    //     <div className="d-flex">
+    //       <button
+    //         variant="primary"
+    //         onClick={() => handleAddToCart(produit)}
+    //         className="add-to-cart-btn"
+    //       >
+    //         ➕
+    //       </button>
+    //       <button onClick={handleClick}>👁️‍🗨️</button>
+    //     </div>
+    //   </Card.Body>
+    // </Card>
   );
 };
 

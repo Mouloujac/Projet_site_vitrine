@@ -4,11 +4,11 @@ import ProductsListe from './components/ProductListe';
 import CommandesListe from './components/CommandesListe';
 import axios from "./../../axios";
 import CreateForm from './components/CreateForm';
-
+import AdminLogin from './components/AdminLogin'
 import { Modal, Button } from 'react-bootstrap';
 
 
-const Admin = ({ user }) => {
+const Admin = ({ user, setUser }) => {
   const [show, setShow] = useState(false);
   const [produits, setProduits] = useState([]);
 
@@ -19,6 +19,14 @@ const Admin = ({ user }) => {
     const response = await axios.get('/produits');
     console.log("ok")
     setProduits(response.data);
+  }
+  
+  if (!user || user.is_admin !== 1) {
+    return (
+      <>
+        <AdminLogin user={user} setUser={setUser} />
+      </>
+    );
   }
   
 

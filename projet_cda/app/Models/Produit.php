@@ -38,10 +38,7 @@ class Produit extends Model
         'taille_id' => 'integer',
     ];
 
-    public function type(): BelongsTo
-    {
-        return $this->belongsTo(Type::class);
-    }
+   
 
     public function taille(): BelongsTo
     {
