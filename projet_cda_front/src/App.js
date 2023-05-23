@@ -60,7 +60,7 @@ const App = () => {
         pauseOnHover={false}
       />
         <Header user={user} logout={handleLogout} />
-        <div class='bodyFrame'>
+        <div className='bodyFrame'>
         
           <Routes>
               <Route path="/admin" element={<Admin user={user} setUser={setUser}/>} />

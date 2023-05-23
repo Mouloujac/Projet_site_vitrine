@@ -10,5 +10,27 @@
 
 .page-wrapper-open{
   position: absolute;
+  
 }
   
+
+.category-label{
+  width:100px;
+  justify-content: space-between;
+  display:flex;
+  margin-left:0.3rem;
+}
+
+#productPage{
+  display: flex;
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  z-index: -2;
+  background-color: rgba(233, 233, 237, 0.537);
+}
+
+.categories{
+  margin-top: 2rem;
+  margin-left: 2.5rem;
+}

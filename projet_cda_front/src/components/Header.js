@@ -43,9 +43,11 @@ const Header = ({ user, logout }) => {
     <>
       <input type="checkbox" id="hamburger-input" className="burger-shower" />
 
-      <label htmlFor="hamburger-input" id="hamburger-menu" >
+      <label htmlFor="hamburger-input" id="hamburger-menu">
         <nav id="sidebar-menu">
-          <h3>Menu</h3>
+          <div id="logoSidebarDiv">
+        <img src="/J.png" id="logoJSidebar"/>
+        </div>
           <br />
           <ul>
             <li>
@@ -61,12 +63,20 @@ const Header = ({ user, logout }) => {
             {user && Object.keys(user).length > 0 ? (
               <>
                 <li className="headerLink">
-                  <Link to="/panier" className="nav-link" onClick={handleLinkClick}>
+                  <Link
+                    to="/panier"
+                    className="nav-link"
+                    onClick={handleLinkClick}
+                  >
                     Panier
                   </Link>
                 </li>
                 <li className="headerLink">
-                  <Link to="/account" className="nav-link" onClick={handleLinkClick}>
+                  <Link
+                    to="/account"
+                    className="nav-link"
+                    onClick={handleLinkClick}
+                  >
                     Mon compte
                   </Link>
                 </li>
@@ -85,17 +95,29 @@ const Header = ({ user, logout }) => {
             ) : (
               <>
                 <li className="headerLink">
-                  <Link to="/panier" className="nav-link" onClick={handleLinkClick}>
+                  <Link
+                    to="/panier"
+                    className="nav-link"
+                    onClick={handleLinkClick}
+                  >
                     Panier
                   </Link>
                 </li>
                 <li className="headerLink">
-                  <Link to="/login" className="nav-link" onClick={handleLinkClick}>
+                  <Link
+                    to="/login"
+                    className="nav-link"
+                    onClick={handleLinkClick}
+                  >
                     Connexion
                   </Link>
                 </li>
                 <li className="headerLink">
-                  <Link to="/inscription" className="nav-link" onClick={handleLinkClick}>
+                  <Link
+                    to="/inscription"
+                    className="nav-link"
+                    onClick={handleLinkClick}
+                  >
                     Inscription
                   </Link>
                 </li>
@@ -106,15 +128,18 @@ const Header = ({ user, logout }) => {
       </label>
       <div className="overlay"></div>
 
+          {/* Menu en taille d'ecran "desktop" __________________________________*/}
+
+
       <nav id="main-menu" className="navbar">
         <ul>
           {user && Object.keys(user).length > 0 ? (
             <>
+              <div className="logoDiv"><img src="/J.png" id="logoJ"/></div>
               <div className="NavLink">
                 <li>
                   <Link to="/" className="nav-link">
-                   
-                  Accueil
+                    Accueil
                   </Link>
                 </li>
                 <li className="headerLink">
@@ -129,12 +154,18 @@ const Header = ({ user, logout }) => {
                 </li>
               </div>
               <div id="navLog">
-                <li className="headerLink">
-                  <Link to="/Mon compte" className="nav-link">
+                <div class="dropdown">
+                  <img
+                    id="imgCompte"
+                    src="/compte.png"
+                    alt="Compte"
+                    
+                  />
+                  <div class="dropdown-content" id="dropdownMenu">
+                  <Link to="/account" className="nav-link">
                     Mon compte
                   </Link>
-                </li>
-                <li className="headerLink">
+                
                   <Link
                     to="/login"
                     className="nav-link"
@@ -144,11 +175,13 @@ const Header = ({ user, logout }) => {
                   >
                     Déconnexion
                   </Link>
-                </li>
+                  </div>
+                </div>
               </div>
             </>
           ) : (
             <>
+              <div className="logoDiv"><img src="/J.png" id="logoJ"/></div>
               <div className="NavLink">
                 <li>
                   <Link to="/" className="nav-link">

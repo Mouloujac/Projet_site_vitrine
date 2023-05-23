@@ -61,36 +61,36 @@ const ProductCard = ({ produit, setProduits }) => {
   }
   // console.log(produit)
   return (
-      <div class="page-inner">
-        <div class="row">
-          <div class="el-wrapper">
-            <div class="box-up">
+      <div className="page-inner">
+        <div className="row">
+          <div className="el-wrapper">
+            <div className="box-up">
               <img
-                class="img"
+                className="imgProduct"
                 src="/dress.png"
                 alt=""
               />
-              <div class="img-info">
-                <div class="info-inner">
-                  <span class="p-name">{produit.nom}</span>
-                  <span class="p-company">{produit.taille.nom}</span>
+              <div className="img-info">
+                <div className="info-inner">
+                  <span className="p-name">{produit.nom}</span>
+                  <span className="p-company">{produit.taille.nom}</span>
                 </div>
-                <div class="a-size">
-                   <span class="size">{produit.description}</span>
+                <div className="a-size">
+                   <span className="size">{produit.description}</span>
                    <button onClick={handleClick}>👁️‍🗨️</button>
                 </div>
               </div>
             </div>
 
-            <div class="box-down">
-              <div class="h-bg">
-                <div class="h-bg-inner"></div>
+            <div className="box-down">
+              <div className="h-bg">
+                <div className="h-bg-inner"></div>
               </div>
 
-              <a class="cart" href="#">
-                <span class="price">$120</span>
-                <span class="add-to-cart">
-                  <span class="txt" onClick={() => handleAddToCart(produit)}>Add in cart</span>
+              <a className="cart" href="#">
+                <span className="price">$120</span>
+                <span className="add-to-cart">
+                  <span className="txt" onClick={() => handleAddToCart(produit)}>Add in cart</span>
                 </span>
               </a>
             </div>
