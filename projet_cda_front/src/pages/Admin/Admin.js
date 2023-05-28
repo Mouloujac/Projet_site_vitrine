@@ -21,7 +21,7 @@ const Admin = ({ user, setUser }) => {
     setProduits(response.data);
   }
   
-  if (!user || user.is_admin !== 1) {
+  if (!user || user.isAdmin !== 1) {
     return (
       <>
         <AdminLogin user={user} setUser={setUser} />

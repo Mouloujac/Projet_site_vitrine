@@ -18,7 +18,6 @@ class Panier extends Model
      */
     protected $fillable = [
         'produit_id',
-        'user_id',
         'statut',
         'commande_id',
     ];
@@ -32,7 +31,6 @@ class Panier extends Model
         'id' => 'integer',
         'produit_id' => 'integer',
         'commande_id' => 'integer',
-        'user_id' => 'integer',
         'statut' => 'boolean',
     ];
     

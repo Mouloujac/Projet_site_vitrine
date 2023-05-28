@@ -10,11 +10,11 @@ created:
     - database/factories/PanierFactory.php
     - database/factories/CommandeFactory.php
     - database/factories/TailleFactory.php
-    - database/migrations/2023_03_12_173001_create_produits_table.php
-    - database/migrations/2023_03_12_173002_create_types_table.php
-    - database/migrations/2023_03_12_173003_create_paniers_table.php
-    - database/migrations/2023_03_12_173004_create_commandes_table.php
-    - database/migrations/2023_03_12_173005_create_tailles_table.php
+    - database/migrations/2023_05_28_122034_create_produits_table.php
+    - database/migrations/2023_05_28_122035_create_types_table.php
+    - database/migrations/2023_05_28_122036_create_paniers_table.php
+    - database/migrations/2023_05_28_122037_create_commandes_table.php
+    - database/migrations/2023_05_28_122038_create_tailles_table.php
     - app/Models/Produit.php
     - app/Models/Type.php
     - app/Models/Panier.php
@@ -26,15 +26,13 @@ created:
     - tests/Feature/Http/Controllers/userControllerTest.php
     - tests/Feature/Http/Controllers/tailleControllerTest.php
     - tests/Feature/Http/Controllers/commandeControllerTest.php
-    - app/Http/Requests/produitStoreRequest.php
-    - app/Http/Requests/produitUpdateRequest.php
+updated:
+    - routes/web.php
+skipped:
     - resources/views/produit/index.blade.php
     - resources/views/produit/create.blade.php
     - resources/views/produit/show.blade.php
     - resources/views/produit/edit.blade.php
-updated:
-    - routes/web.php
-skipped:
     - resources/views/type/index.blade.php
     - resources/views/type/create.blade.php
     - resources/views/type/show.blade.php

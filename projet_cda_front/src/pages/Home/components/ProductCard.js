@@ -69,15 +69,16 @@ const ProductCard = ({ produit, setProduits }) => {
                 className="imgProduct"
                 src="/dress.png"
                 alt=""
+                onClick={handleClick}
               />
               <div className="img-info">
                 <div className="info-inner">
                   <span className="p-name">{produit.nom}</span>
-                  <span className="p-company">{produit.taille.nom}</span>
+                  <span className="size">{produit.taille.nom}</span>
                 </div>
                 <div className="a-size">
-                   <span className="size">{produit.description}</span>
-                   <button onClick={handleClick}>👁️‍🗨️</button>
+                   <span className="p-company">{produit.description}</span>
+                  
                 </div>
               </div>
             </div>

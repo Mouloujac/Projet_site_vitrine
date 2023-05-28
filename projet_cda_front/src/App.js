@@ -60,7 +60,7 @@ const App = () => {
         pauseOnHover={false}
       />
         <Header user={user} logout={handleLogout} />
-        <div className='bodyFrame'>
+        
         
           <Routes>
               <Route path="/admin" element={<Admin user={user} setUser={setUser}/>} />
@@ -75,7 +75,7 @@ const App = () => {
               <Route path="/produits/:id" element={<Product  user={user} setUser={setUser} />} />
           </Routes>
         
-        </div>
+        
         </>
       ) : (
         <div className="d-flex justify-content-center mt-5 flex-column">

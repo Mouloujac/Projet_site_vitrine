@@ -30,11 +30,12 @@ const AdminLogin = ({user, setUser }) => {
       toast.success("Connexion réussie");
 
       const response = await axios.get('/api/user');
-      console.log(response.data);
-      if (response.data.is_admin === 1) {
+      console.log(response.data.isAdmin);
+      if (response.data.isAdmin === 1) {
+        console.log('is admin')
         setUser(response.data);
         setAuthenticated(true);
-        navigate("/admin");
+        navigate('/admin');
       } else {
         document.querySelector('.error-message-login').innerHTML = "Vous n'avez pas les droits d'accès à l'administration.";
       }
@@ -49,7 +50,7 @@ const AdminLogin = ({user, setUser }) => {
     try {
       await axios.post('/logout');
       setAuthenticated(false);
-      navigate('/login');
+      navigate('/');
 
     } catch (error) {
       console.error(error);

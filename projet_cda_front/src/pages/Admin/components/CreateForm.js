@@ -27,7 +27,7 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
 
   useEffect(() => {
     axios
-      .get("/api/type")
+      .get("/api/types")
       .then((response) => {
         settype(response.data);
         console.log(response.data);

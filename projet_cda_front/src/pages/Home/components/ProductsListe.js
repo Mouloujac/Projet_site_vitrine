@@ -7,8 +7,7 @@ import "../../../components/styles/Header.css";
 
 const ProductsListe = ({ user }) => {
   const [produits, setProduits] = useState([]); // Produits
-  const [currentPage, setCurrentPage] = useState(1); // Page courante
-  const [productsPerPage] = useState(8); // Produits par page
+  
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
 

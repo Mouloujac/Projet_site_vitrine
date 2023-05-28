@@ -154,14 +154,14 @@ const Header = ({ user, logout }) => {
                 </li>
               </div>
               <div id="navLog">
-                <div class="dropdown">
+                <div className="dropdown">
                   <img
                     id="imgCompte"
                     src="/compte.png"
                     alt="Compte"
                     
                   />
-                  <div class="dropdown-content" id="dropdownMenu">
+                  <div className="dropdown-content" id="dropdownMenu">
                   <Link to="/account" className="nav-link">
                     Mon compte
                   </Link>
