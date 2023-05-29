@@ -1,0 +1,49 @@
+import React from 'react'
+import './styles/Footer.css'
+import { Link } from 'react-router-dom'
+
+const Footer =() =>{
+
+    return(
+                <section id="footer">
+        <div class="main-footer">
+            <div class="logoinfo" data-aos="fade-up">
+            <h2>Jacquotte & Fanfan</h2>
+            <p>By Théo Lecolley</p>
+
+            <div class="contact-details">
+                <h1>Contact</h1>
+                <li>
+                <div class="fa fa-phone"></div><a href="tel:+919326048690">+33 6654321</a></li>
+                <li>
+                <div class="fa fa-envelope"></div><a href="mailto:yourmail@gmail.com">Jacquotte.fanfan@gmail.com</a></li>
+                
+            </div>
+        </div>
+        <div class="com " data-aos="fade-up">
+            <h1>About</h1>
+            <ul>
+            <li><Link to="/" >Accueil</Link></li>
+            <li><Link to="/panier" >Panier</Link></li>
+            <li><Link to="/contact" >Contact</Link></li>
+            <li><Link to="/panier" ></Link></li>
+            </ul>
+        </div>
+        <div class="info" data-aos="fade-up">
+            <h1>Social Media</h1>
+            <div class="sociallogos">
+            <div class="logobox">
+                <a href="#" class="fa fa-instagram"></a>
+                <a href="#" class="fa fa-linkedin"></a>
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-youtube-play"></a>
+            </div>
+            </div>
+        </div>
+        </div>
+        <footer>© Your Copyright 2021 All Rights Reserved</footer>
+        </section>
+    )
+};
+
+export default Footer;

@@ -1,0 +1,31 @@
+.productImg{
+    width: 7rem;
+    margin-right: 1rem;
+}
+
+
+.productCard{
+    display: flex;
+    
+}
+
+.productCardContent{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+.productDescription{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.prix{
+    font-size: 1.4rem;
+    
+}
+
+.deleteButton{
+    margin-right: 1rem;
+}

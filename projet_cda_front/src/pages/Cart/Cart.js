@@ -3,6 +3,7 @@ import PaymentForm from './components/PaymentForm';
 import ProductCard from './components/ProductCard';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import './styles/Cart.css'
 
 const Cart = (user) => {
   const navigate = useNavigate();
@@ -17,10 +18,12 @@ const Cart = (user) => {
 
   if (cartItems && cartItems.length > 0) {
     return (
-      <>
+      <div id="cartContainer">
         <ProductCard />
+        <div id='paymentContainer'>
         <PaymentForm user={user} />
-      </>
+        </div>
+      </div>
     );
   }
   

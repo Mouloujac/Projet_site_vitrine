@@ -4,7 +4,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
-  z-index: -1;
+  z-index: 1;
   
 }
 
@@ -16,14 +16,76 @@
 }
 
 #productPage{
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
-  z-index: -2;
+  z-index: 1;
   background-color: rgba(240, 248, 255, 0);
 }
 
-.categories{
+
+.categoriesVisible{
   margin-top: 2rem;
   margin-left: 2.5rem;
+  
+}
+.categoriesNone{
+  display: none;
+  
+}
+#checkboxMenu{
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+#tailles{
+  position: absolute;
+  padding: 0.3rem;
+  right: 0px;
+  top: 50px;
+  background-color: aliceblue;
+}
+
+#categories{
+  position: absolute;
+  padding: 0.3rem;
+  left: 0px;
+  top: 18px;
+  background-color: aliceblue;
+}
+
+.taillesNone{
+  
+  display: none;
+}
+
+.taillesVisble{
+  margin-top: 2rem;
+  margin-left: 2.5rem;
+  
+}
+
+.checkboxContainer{
+  display: flex;
+}
+
+.tailles-label{
+  width:100px;
+  gap: 0.5rem;
+  display:flex;
+  margin-left:0.3rem;
+  margin-bottom: 0.4rem;
+}
+ #taillesInput{
+  display: none;
+} 
+#categoriesInput{
+  display: none;
+} 
+
+@media (min-width: 720px) {
+  .checkboxContainer{
+    margin-left: 10rem;
+    margin-right: 10rem;
+    }
 }

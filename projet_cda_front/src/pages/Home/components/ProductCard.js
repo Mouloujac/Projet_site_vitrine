@@ -59,64 +59,43 @@ const ProductCard = ({ produit, setProduits }) => {
   function handleClick() {
     navigate(`/produits/${produit.id}`);
   }
+
   // console.log(produit)
   return (
-      <div className="page-inner">
-        <div className="row">
-          <div className="el-wrapper">
-            <div className="box-up">
-              <img
-                className="imgProduct"
-                src="/dress.png"
-                alt=""
-                onClick={handleClick}
-              />
-              <div className="img-info">
-                <div className="info-inner">
-                  <span className="p-name">{produit.nom}</span>
-                  <span className="size">{produit.taille.nom}</span>
-                </div>
-                <div className="a-size">
-                   <span className="p-company">{produit.description}</span>
-                  
-                </div>
-              </div>
-            </div>
-
-            <div className="box-down">
-              <div className="h-bg">
-                <div className="h-bg-inner"></div>
-              </div>
-
-              <a className="cart" href="#">
-                <span className="price">$120</span>
-                <span className="add-to-cart">
-                  <span className="txt" onClick={() => handleAddToCart(produit)}>Add in cart</span>
+    <div className="page-inner">
+      <div className="row">
+        <div className="el-wrapper">
+          <div className="box-up">
+            <img className="imgProduct" src="/dress.png" alt="" />
+            <div className="img-info" >
+              <div className="info-inner" >
+                <span className="p-name">{produit.nom}</span>
+                <span className="size">
+                  <p>{produit.taille.nom}</p>
                 </span>
-              </a>
+              </div>
+              <div className="a-size">
+                <span className="p-company"onClick={handleClick}>{produit.description}</span>
+              </div>
             </div>
+          </div>
+
+          <div className="box-down">
+            <div className="h-bg" >
+              <div className="h-bg-inner"></div>
+            </div>
+
+            <a className="cart" >
+              <span className="price">{produit.prix}€</span>
+              <span className="add-to-cart">
+                <span className="txt" onClick={() => handleAddToCart(produit)}>Add in cart</span>
+              </span>
+            </a>
           </div>
         </div>
       </div>
-    
-    // <Card style={{ width: "15rem" }} className="product-card">
-    //   <Card.Img variant="top" src={produit.image} alt={produit.nom} />
-    //   <Card.Body>
-    //     <Card.Title>{produit.nom}</Card.Title>
-    //     <Card.Text>{produit.description}</Card.Text>
-    //     <Card.Text>Prix : {produit.prix} €</Card.Text>
-    //     <div className="d-flex">
-    //       <button
-    //         variant="primary"
-    //         onClick={() => handleAddToCart(produit)}
-    //         className="add-to-cart-btn"
-    //       >
-    //         ➕
-    //       </button>
-    //       <button onClick={handleClick}>👁️‍🗨️</button>
-    //     </div>
-    //   </Card.Body>
-    // </Card>
+    </div>
+
   );
 };
 

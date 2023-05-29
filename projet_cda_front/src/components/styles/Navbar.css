@@ -1,0 +1,299 @@
+.NavLink {
+  display: flex;
+  gap: 2rem;
+  margin-left: 2rem;
+}
+
+.NavLink > li > a{
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #07100f;
+
+}
+
+.logoDiv{
+  width: 270px;
+}
+#logoJ{
+  margin-left: 2rem;
+  width:3.8rem;
+}
+
+#logoJSidebar{
+  
+  width:8rem;
+}
+
+#logoSidebarDiv{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s, visibility .35s, height .35s;
+  overflow: hidden;
+  background: black;
+  z-index: -2;
+}
+
+#main-menu {
+  position: sticky;
+  display: block;
+  height: 100px;
+  width: 100%;
+  height: 60px;
+  transition: top 0.3s ease-in-out;
+  background: #ffffff;
+  margin: 0px;
+  z-index: 9;
+  box-shadow:0px 0px 10px rgba(128, 128, 128, 0.418);
+}
+
+.navbar-hidden {
+  top: 0px;
+}
+
+#main-menu ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  align-items: center;
+  z-index: 9;
+}
+
+#main-menu li {
+  list-style-type: none;
+  font-size: 2rem;
+}
+
+
+/* #main-menu a:hover {
+  color: #3d0e61;
+} */
+
+#hamburger-input {
+  display: none;
+}
+
+#hamburger-menu {
+  margin: 0.8rem;
+  top: 15px;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  display: none;
+  border: none;
+  padding: 0px;
+  
+  font-family: 'Cabin', Sans-serif;
+  background: linear-gradient(
+    to bottom,
+    #07100f, #07100f 20%,
+    rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 40%,
+    #07100f 40%, #07100f 60%,
+    rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0) 80%,
+    #07100f 80%, #07100f 100%
+  );
+}
+
+#hamburger-menu #sidebar-menu {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 200px;
+  height: 100%;
+  background-color: #ffffff;
+  transition: left 0.3s ease-in-out;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  z-index: 9999;
+  
+}
+
+#hamburger-menu h3 {
+  color: #c6d6d5;
+  justify-self: center;
+  font-size: 2.2rem;
+}
+
+#hamburger-menu ul {
+  padding-left: 0px;
+}
+
+#hamburger-menu li {
+  list-style-type: none;
+  line-height: 3rem;
+}
+
+#hamburger-menu a {
+  color: #c6d6d5;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+
+#hamburger-menu a:hover {
+  text-decoration: underline;
+}
+
+#hamburger-input:checked + #hamburger-menu #sidebar-menu {
+  visibility: visible;
+  left: 0;
+}
+
+#hamburger-input:checked ~ .overlay {
+  visibility: visible;
+  opacity: 0.4;
+}
+
+#main-menu h3 {
+  display: none;
+}
+
+#navLog {
+  display: flex;
+  justify-content: flex-end;
+  width: 270px;
+}
+
+#navLog > li > a {
+  text-decoration: none;
+  
+  
+}
+
+.hamburgerMenuImg{
+  width: 50px;
+  margin: 0.6rem;
+}
+
+#navbarBurger{
+  display: none;
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffffef;
+}
+
+.log {
+  border: 2px solid #f0f5f5;
+  border-radius: 5px;
+  color: #fff;
+  transition: .3s;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-right: 5px;
+  width: 130px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.log > a{
+  font-size: 1rem !important;
+  text-align: center;
+}
+
+#signIn {
+  background-color: #46cf73;
+  
+}
+
+#signIn:hover {
+  background-color: #2e9c4f;
+  
+}
+#signIn:hover > a {
+  color: #ffffff !important;
+}
+#signIn > a {
+  color: #19552c !important;
+}
+
+#login{
+  background-color: #444857;
+}
+
+#login > a{
+  color: #eae8e8;
+}
+
+#login:hover {
+  background-color: #9f9f9f;
+}
+
+#login:hover > a {
+  color:#19552c
+}
+
+#imgCompte{
+  width: 50px;
+  margin:0.3rem;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 160px;
+  right: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  cursor: grab;
+  display: block;
+}
+
+#imgCompte{
+  cursor: grab;
+}
+#navbarBurger{
+  display: none;
+  
+}
+
+@media screen and (max-width: 750px) {
+  #main-menu {
+    display: none;
+  }
+  #navbarBurger{
+    display: flex;
+    z-index: 3;
+  }
+  #main-menu h3 {
+    display: inline;
+  }
+  
+  #hamburger-menu {
+    display: inline;
+  }
+
+  .page-wrapper {  
+    position: relative;
+    
+  }
+}

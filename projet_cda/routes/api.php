@@ -23,7 +23,7 @@ Route::post('/produits', 'App\Http\Controllers\produitController@store');
 Route::put('/produits/{produit}', 'App\Http\Controllers\produitController@update');
 
 Route::post('/paniers', 'App\Http\Controllers\panierController@store');
-Route::get('/taille', 'App\Http\Controllers\tailleController@index');
+Route::get('/tailles', 'App\Http\Controllers\tailleController@index');
 Route::get('/types', 'App\Http\Controllers\typeController@index');
 Route::post('/stripe/payment', 'App\Http\Controllers\StripeController@makePayment');
 

@@ -16,7 +16,7 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
 
   useEffect(() => {
     axios
-      .get("/api/taille")
+      .get("/api/tailles")
       .then((response) => {
         settaille(response.data);
       })
