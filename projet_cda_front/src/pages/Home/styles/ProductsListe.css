@@ -9,10 +9,9 @@
 }
 
 .category-label{
-  width:100px;
   justify-content: space-between;
   display:flex;
-  margin-left:0.3rem;
+  
 }
 
 #productPage{
@@ -24,49 +23,37 @@
 }
 
 
-.categoriesVisible{
+.categoryVisible{
   margin-top: 2rem;
   margin-left: 2.5rem;
   
 }
-.categoriesNone{
+.categoryNone{
   display: none;
   
 }
 #checkboxMenu{
   display: flex;
   justify-content: space-between;
-  padding: 2rem;
-}
-#tailles{
-  position: absolute;
-  padding: 0.3rem;
-  right: 0px;
-  top: 50px;
-  background-color: aliceblue;
+  padding: 4rem;
 }
 
-#categories{
+#category{
+  top: 10rem;
   position: absolute;
   padding: 0.3rem;
   left: 0px;
-  top: 18px;
+  z-index: 2;
   background-color: aliceblue;
 }
-
-.taillesNone{
-  
-  display: none;
-}
-
-.taillesVisble{
-  margin-top: 2rem;
-  margin-left: 2.5rem;
-  
+.category-row{
+  display: flex;
 }
 
 .checkboxContainer{
   display: flex;
+  padding: 1rem;
+  border: solid 1px ;
 }
 
 .tailles-label{
@@ -79,7 +66,7 @@
  #taillesInput{
   display: none;
 } 
-#categoriesInput{
+#categoryInput{
   display: none;
 } 
 
@@ -88,4 +75,100 @@
     margin-left: 10rem;
     margin-right: 10rem;
     }
+}
+
+.select-menu {
+  max-width: 330px;
+  margin: 50px auto;
+}
+
+.select-menu .select-btn {
+  display: flex;
+  height: 55px;
+  background: #fff;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 8px;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.select-menu .options {
+  position: absolute;
+  width: 330px;
+  overflow-y: auto;
+  max-height: 295px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(20px);
+  opacity: 0;
+  z-index: 2;
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+.select-menu .options .option {
+  display: flex;
+  height: 55px;
+  cursor: pointer;
+  padding: 0 16px;
+  border-radius: 8px;
+  align-items: center;
+  background: #fff;
+}
+
+.select-menu .options .option:hover {
+  background: #f2f2f2;
+}
+
+.select-menu .options .option i {
+  font-size: 25px;
+  margin-right: 12px;
+}
+
+.select-menu .options .option .option-text {
+  font-size: 18px;
+  color: #333;
+}
+
+.select-btn i {
+  font-size: 25px;
+  transition: 0.3s;
+}
+
+.select-menu.active .select-btn i {
+  transform: rotate(-180deg);
+}
+
+.select-menu.active .options {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Ajoutez les préfixes de navigateur nécessaires aux propriétés CSS appropriées */
+
+
+@keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+@keyframes fadeInDown {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(0, 20px, 0);
+    opacity: 0;
+  }
 }

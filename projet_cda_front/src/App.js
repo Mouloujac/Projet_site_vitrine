@@ -14,6 +14,8 @@ import Admin from './pages/Admin/Admin';
 import axios from './axios';
 import Cart from './pages/Cart/Cart';
 import Header from './components/Header'
+import Footer from './components/Footer'
+
 import "./App.css"
 import { Provider } from 'react-redux';
 import store from './redux/store'
@@ -75,6 +77,7 @@ const App = () => {
               <Route path="/inscription" element={<Inscription setUser={setUser} />}/>
               <Route path="/produits/:id" element={<Product  user={user} setUser={setUser} />} />
           </Routes>
+          <Footer/>
         </>
         
       ) : (

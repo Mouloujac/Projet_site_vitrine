@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "./ProductCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "../../../axios";
 import "../styles/ProductsListe.css";
 import "../../../components/styles/Navbar.css";
@@ -8,9 +8,9 @@ import "../../../components/styles/Navbar.css";
 const ProductsListe = ({ user }) => {
   const [produits, setProduits] = useState([]); // Produits
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCategory, setselectedCategory] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [category, setcategory] = useState([]);
   const [sizes, setSizes] = useState([]);
 
   const handleTaillesInput = () => {
@@ -25,15 +25,15 @@ const ProductsListe = ({ user }) => {
     }
   };
 
-  const handleCategoriesInput = () => {
-    let checkbox = document.getElementById("categoriesInput");
-    let Categories = document.getElementById("categories");
+  const handleCategoryInput = () => {
+    let checkbox = document.getElementById("categoryInput");
+    let Category = document.getElementById("category");
     if (checkbox.checked) {
-      Categories.classList.remove("categoriesNone");
-      Categories.classList.add("categoriesVisible");
+      Category.classList.remove("categoryNone");
+      Category.classList.add("categoryVisible");
     } else {
-      Categories.classList.remove("categoriesVisible");
-      Categories.classList.add("categoriesNone");
+      Category.classList.remove("categoryVisible");
+      Category.classList.add("categoryNone");
     }
   };
   
@@ -53,12 +53,12 @@ const ProductsListe = ({ user }) => {
   }, []);
 
   const handleCategoryChange = (categoryId) => {
-    if (selectedCategories.includes(categoryId)) {
-      setSelectedCategories(
-        selectedCategories.filter((id) => id !== categoryId)
+    if (selectedCategory.includes(categoryId)) {
+      setselectedCategory(
+        selectedCategory.filter((id) => id !== categoryId)
       );
     } else {
-      setSelectedCategories([...selectedCategories, categoryId]);
+      setselectedCategory([...selectedCategory, categoryId]);
     }
   };
 
@@ -73,9 +73,9 @@ const ProductsListe = ({ user }) => {
   useEffect(() => {
     let filteredProducts = produits; // Commence avec tous les produits
 
-    if (selectedCategories.length > 0) {
+    if (selectedCategory.length > 0) {
       filteredProducts = produits.filter((produit) =>
-        selectedCategories.includes(produit.type_id)
+        selectedCategory.includes(produit.type_id)
       );
     }
 
@@ -86,17 +86,17 @@ const ProductsListe = ({ user }) => {
     }
 
     setFilteredProducts(filteredProducts);
-  }, [produits, selectedCategories, selectedSizes]);
+  }, [produits, selectedCategory, selectedSizes]);
 
   useEffect(() => {
     let url = "/produits";
 
-    if (selectedCategories.length > 0 || selectedSizes.length > 0) {
+    if (selectedCategory.length > 0 || selectedSizes.length > 0) {
       const queryParams = [];
 
-      if (selectedCategories.length > 0) {
-        const categoriesQueryParam = selectedCategories.join(",");
-        queryParams.push(`type_id=${categoriesQueryParam}`);
+      if (selectedCategory.length > 0) {
+        const categoryQueryParam = selectedCategory.join(",");
+        queryParams.push(`type_id=${categoryQueryParam}`);
       }
 
       if (selectedSizes.length > 0) {
@@ -119,7 +119,7 @@ const ProductsListe = ({ user }) => {
         setProduits([]);
         console.error(error);
       });
-  }, [selectedCategories, selectedSizes]);
+  }, [selectedCategory, selectedSizes]);
 
   
 
@@ -127,7 +127,7 @@ const ProductsListe = ({ user }) => {
     axios
       .get("/api/types")
       .then((response) => {
-        setCategories(response.data);
+        setcategory(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -145,57 +145,77 @@ const ProductsListe = ({ user }) => {
       });
   }, []);
 
+  useEffect(() => {
+    const optionMenu = document.querySelector(".select-menu");
+    const selectBtn = optionMenu.querySelector(".select-btn");
+    const options = optionMenu.querySelectorAll(".option");
+    const sBtn_text = optionMenu.querySelector(".sBtn-text");
+  
+    const handleClick = () => {
+      optionMenu.classList.toggle("active");
+    };
+  
+    selectBtn.addEventListener("click", handleClick);
+  
+    options.forEach((option) => {
+      option.addEventListener("click", () => {
+        let selectedOption = option.querySelector(".option-text").innerText;
+        sBtn_text.innerText = selectedOption;
+  
+        optionMenu.classList.remove("active");
+      });
+    });
+  
+    return () => {
+      selectBtn.removeEventListener("click", handleClick);
+    };
+  }, []);
+  
   return (
     <div id="productPage">
-      <div id="checkboxMenu">
-      <div className="checkboxContainer">
-        <div>Vêtements</div>
-        <label for="categoriesInput">▼</label>
-        <input
-          type="checkbox"
-          id="categoriesInput"
-          onChange={handleCategoriesInput}
-        />
-        <div id="categories" class="categoriesNone">
-          {categories.map((category) => (
+      
+      
+        <div className="select-menu" >
+  <div className="select-btn">
+    <span className="sBtn-text">Select your option</span>
+    <i className="bx bx-chevron-down"></i>
+  </div>
+
+  <ul className="options">
+    <li className="option">
+    <div id="types" className="category-row">
+          {category.map((category) => (
             <label key={category.id} className="category-label">
               {category.nom}
               <input
                 type="checkbox"
-                checked={selectedCategories.includes(category.id)}
+                checked={selectedCategory.includes(category.id)}
                 onChange={() => handleCategoryChange(category.id)}
               />
             </label>
           ))}
         </div>
-        </div>
-
-        <div className="checkboxContainer">
-          
-        <div>Tailles</div>
-        <label for="taillesInput">▼</label>
-        <input
-          type="checkbox"
-          id="taillesInput"
-          onChange={handleTaillesInput}
-        />
-        <div id="tailles" class="taillesNone">
+    </li>
+    <li className="option">
+      
+    <div id="size" className="category-row">
           {sizes.map((size) => (
-            <label key={size.id} className="tailles-label">
-              
+            <label key={size.id} className="category-label">
+              {size.nom}
               <input
                 type="checkbox"
                 checked={selectedSizes.includes(size.id)}
                 onChange={() => handleSizeChange(size.id)}
               />
-              {size.nom}
+              
             </label>
           ))}
-          Clear all
+        
         </div>
-      </div>
-      </div>
-
+    </li>
+  
+  </ul>
+</div>
       <div className="page-wrapper">
         {filteredProducts.map((produit) => (
           <ProductCard

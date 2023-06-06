@@ -8,6 +8,7 @@ const Header = () => {
 
     return(
         <div id='headerContainer'>
+            <div id="divTest"></div>
         </div>
     )
 
