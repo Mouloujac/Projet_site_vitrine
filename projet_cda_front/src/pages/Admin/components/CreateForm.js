@@ -71,6 +71,11 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
 
 
   return (
+    <div className="product-form-container">
+      <div className="form-header">
+        <h2 className="form-title">Ajouter un nouveau produit</h2>
+      </div>
+      <div className="form-content"></div>
     <form onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="nom">Nom du produit:</label>
@@ -154,6 +159,8 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
         Ajouter produit
       </button>
     </form>
+    </div>
+    
   );
 };
 

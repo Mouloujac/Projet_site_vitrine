@@ -6,7 +6,7 @@ import axios from "./../../axios";
 import CreateForm from './components/CreateForm';
 import AdminLogin from './components/AdminLogin'
 import { Modal, Button } from 'react-bootstrap';
-
+import "./styles/Product.css"
 
 const Admin = ({ user, setUser }) => {
   const [show, setShow] = useState(false);
@@ -31,11 +31,13 @@ const Admin = ({ user, setUser }) => {
   
 
   return (
-    <>
+    <section id="admin">
       <ProductsListe user={user} updateProducts={updateProducts}/>
+      <div id="line">
+      <CreateForm user={user} updateProducts={updateProducts} />
       <CommandesListe {...user} />
-      
-    </>
+      </div>
+    </section>
   );
 };
 

@@ -2,19 +2,16 @@ import React from 'react';
 import ProductCard from './ProductCard';
 import { useState, useEffect } from 'react';
 import axios from '../../../axios';
-import { Pagination, Button, Modal} from 'react-bootstrap';
+
+import '../styles/Product.css'
 import CreateForm from './CreateForm';
-import Table from 'react-bootstrap/Table';
+
 
 
 const ProductsListe = ({ user }) => {
   const [show, setShow] = useState(false);
   const [produits, setProduits] = useState([]); // Produits
-  const [currentPage, setCurrentPage] = useState(1); // Page courante
-  const [productsPerPage] = useState(8); // Produits par page
-
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  
 
   const updateProducts = async () => {
     const response = await axios.get('/produits');
@@ -22,7 +19,28 @@ const ProductsListe = ({ user }) => {
     setProduits(response.data);
   }
   
-      
+  useEffect(() => {
+    const handleResize = () => {
+      const tblContent = document.getElementsByClassName('tbl-content')[0];
+      const tblTable = document.getElementsByClassName('tbl-content table')[0];
+      const tblHeader = document.getElementsByClassName('tbl-header')[0];
+
+      const scrollWidth = tblContent.offsetWidth - tblTable.offsetWidth;
+      tblHeader.style.paddingRight = scrollWidth + 'px';
+    };
+
+    // Exécuter la fonction handleResize lors du chargement de la page et lors du redimensionnement de la fenêtre
+    window.addEventListener('load', handleResize);
+    window.addEventListener('resize', handleResize);
+
+    // Nettoyer les écouteurs d'événements lors du démontage du composant
+    return () => {
+      window.removeEventListener('load', handleResize);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
   useEffect(() => {
     axios.get('/produits').then((response) => {
       setProduits(response.data);
@@ -34,53 +52,41 @@ const ProductsListe = ({ user }) => {
   }, []) // [] = componentDidMount (exécuté une seule fois)
   
 
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = produits.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  }
+ 
 
   return (
-    <div>
-      <Button variant="primary" onClick={handleShow}>
-        Ajouter produit
-      </Button>
-      <Table striped bordered hover responsive>
+    <div id="productsTable">
+      
+      <div className='tbl-header'>
+      <table cellPadding="0" cellSpacing="0" border="0">
         <thead>
           <tr>
             <th>Supprimer</th>
-            <th>Image</th>
+            <th >Image</th>
             <th>Nom</th>
             <th>Description</th>
             <th>Prix</th>
+            <th> </th>
           </tr>
         </thead>
+    </table>
+    </div>
+    <div className="tbl-content">
+    <table cellPadding="0" cellSpacing="0" border="0">
         <tbody>
-          {currentProducts.map((produit) => (
+          {produits.map((produit) => (
             <ProductCard key={produit.id} produit={produit} />
           ))}
         </tbody>
-      </Table>
-      <div className="text-center">
-        <Pagination>
-          {Array.from({length: Math.ceil(produits.length / productsPerPage)}, (v, i) => (
-            <Pagination.Item key={i} active={i + 1 === currentPage} onClick={() => handlePageChange(i + 1)}>
-              {i + 1}
-            </Pagination.Item>
-          ))}
-        </Pagination>
+      </table>
       </div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Ajouter un nouveau produit</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <CreateForm user={user} handleClose={handleClose} updateProducts={updateProducts} />
-        </Modal.Body>
-      </Modal>
-    </div>
+      
+      
+       
+
+      </div>
+    
   );
 };
 

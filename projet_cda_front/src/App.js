@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
@@ -62,6 +62,7 @@ const App = () => {
         theme="dark"
         pauseOnHover={false}
       />
+      
         <Navbar user={user} logout={handleLogout} />
         <Header/>
         
@@ -90,5 +91,44 @@ const App = () => {
     </div>
   );
 }
+const AppAdmin = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const cartItems = useSelector((state) => JSON.parse(sessionStorage.getItem('Produit')));
+  useEffect(() => {
 
-export default App;
+    axios.get('/api/user').then((response) => {
+      setUser(response.data);
+      
+    }).catch((error) => {
+      setUser()
+    }).finally(() => {
+      setLoading(false);
+    })
+    
+  }, [navigate])
+
+  const handleLogout = () => {
+    axios.post('/logout');
+    setUser();
+    navigate('/login');
+  }
+  return(
+    <div className="App" >
+    <Routes>
+      <Route path="/admin" element={<Admin user={user} setUser={setUser}/>} />
+    </Routes>
+    </div>
+  );
+};
+export default () => {
+  const location = useLocation();
+  const isAdminPage = location.pathname.includes('/admin');
+
+  if (isAdminPage) {
+    return <AppAdmin />;
+  } else {
+    return <App />;
+  }
+};
