@@ -17,7 +17,7 @@ const UpdateForm = ({ user, handleClose, produit, handleUpdate }) => {
 
   useEffect(() => {
     axios
-      .get("/api/taille")
+      .get("/api/tailles")
       .then((response) => {
         settaille(response.data);
       })
@@ -28,7 +28,7 @@ const UpdateForm = ({ user, handleClose, produit, handleUpdate }) => {
 
   useEffect(() => {
     axios
-      .get("/api/type")
+      .get("/api/types")
       .then((response) => {
         settype(response.data);
         console.log(response.data);

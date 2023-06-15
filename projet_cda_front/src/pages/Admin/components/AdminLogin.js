@@ -65,26 +65,36 @@ const AdminLogin = ({user, setUser }) => {
           <button onClick={handleLogout}>Déconnexion</button>
         </div>
       ) : (
+        <section id="login-page">
+          <h1>Administration</h1>
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={login}>
           {({ isSubmitting }) => (
-            <Form className='p-3 mx-auto w-fit-content login-form mt-5'>
-              <div className="form-group ">
-                <label htmlFor="email">Email</label>
-                <Field type="email" name="email" className="form-control"/>
+            <Form className='login-form'>
+              <h2>Login</h2>
+              <h3>Connecte toi au panel d'administration grace a tes identifiants d'administrateur.</h3>
+              <div className="login-form-group ">
+                
+                <Field type="email" name="email" className="form-control" placeholder="@UserName" autoComplete="off"/>
                 <ErrorMessage name="email" component="div" />
               </div>
-              <div className="form-group mt-4">
-                <label htmlFor="password">Mot de passe</label>
-                <Field type="password" name="password" className="form-control"/>
+              <div className="login-form-group">
+                
+                <Field type="password" name="password" className="form-control" placeholder="@UserName" autoComplete="off"/>
                 <ErrorMessage name="password" component="div" />
               </div>
               <div className='error-message-login mt-3 text-danger'></div>
-              <button type="submit" className="btn btn-primary mt-4">
-                Se connecter
+              <div className="login-form-group">
+              <button type="submit" className="btn-validate">
+              <span>Login</span>
+                <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+                </svg>
               </button>
+              </div>
             </Form>
           )}
         </Formik>
+        </section>
       )}
     </>
   );

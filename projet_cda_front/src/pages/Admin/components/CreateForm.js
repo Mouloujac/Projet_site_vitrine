@@ -10,15 +10,15 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
     type_id:"",
     taille_id: "",
   });
-  const [taille, settaille] = useState([]);
-  const [type, settype] = useState([]);
+  const [taille, setTaille] = useState([]);
+  const [type, setType] = useState([]);
   
 
   useEffect(() => {
     axios
       .get("/api/tailles")
       .then((response) => {
-        settaille(response.data);
+        setTaille(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -29,7 +29,7 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
     axios
       .get("/api/types")
       .then((response) => {
-        settype(response.data);
+        setType(response.data);
         console.log(response.data);
         console.log(type);
       })

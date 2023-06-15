@@ -12,9 +12,6 @@ const Admin = ({ user, setUser }) => {
   const [show, setShow] = useState(false);
   const [produits, setProduits] = useState([]);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const updateProducts = async () => {
     const response = await axios.get('/produits');
     console.log("ok")
