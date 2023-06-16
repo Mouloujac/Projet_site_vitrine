@@ -47,10 +47,10 @@ class produitController extends Controller
         return response()->json($produit);
     }
 
-    public function destroy(Request $request, produit $produit): RedirectResponse
+    public function destroy(Request $request, produit $produit)
     {
         $produit->delete();
 
-        return redirect()->route('produit.index');
+        return response()->json($produit);
     }
 }

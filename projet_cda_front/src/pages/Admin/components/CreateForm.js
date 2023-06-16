@@ -30,8 +30,6 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
       .get("/api/types")
       .then((response) => {
         setType(response.data);
-        console.log(response.data);
-        console.log(type);
       })
       .catch((error) => {
         console.error(error);
@@ -51,7 +49,6 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
     axios
       .post("/api/produits", formState)
       .then((response) => {
-        console.log(response.data);
         // clear the form after successful submission
         setFormState({
           nom: "",

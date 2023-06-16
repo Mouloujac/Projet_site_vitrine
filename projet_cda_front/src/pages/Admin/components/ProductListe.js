@@ -4,20 +4,8 @@ import { useState, useEffect } from 'react';
 import axios from '../../../axios';
 
 import '../styles/Product.css'
-import CreateForm from './CreateForm';
 
-
-
-const ProductsListe = ({ user }) => {
-  const [show, setShow] = useState(false);
-  const [produits, setProduits] = useState([]); // Produits
-  
-
-  const updateProducts = async () => {
-    const response = await axios.get('/produits');
-    console.log("ok")
-    setProduits(response.data);
-  }
+const ProductsListe = ({ user, updateProducts, produits, setProduits, handleShow }) => {
   
   useEffect(() => {
     const handleResize = () => {
@@ -39,22 +27,7 @@ const ProductsListe = ({ user }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-
-  useEffect(() => {
-    axios.get('/produits').then((response) => {
-      setProduits(response.data);
-      
-    }).catch((error) => {
-      setProduits([])
-      console.error(error);
-    });
-  }, []) // [] = componentDidMount (exécuté une seule fois)
   
-
-
- 
-
   return (
     <div id="productsTable">
       
@@ -63,7 +36,7 @@ const ProductsListe = ({ user }) => {
         <thead>
           <tr>
             <th>Supprimer</th>
-            <th >Image</th>
+            <th>Image</th>
             <th>Nom</th>
             <th>Description</th>
             <th>Prix</th>
@@ -76,7 +49,7 @@ const ProductsListe = ({ user }) => {
     <table cellPadding="0" cellSpacing="0" border="0">
         <tbody>
           {produits.map((produit) => (
-            <ProductCard key={produit.id} produit={produit} />
+            <ProductCard key={produit.id} produit={produit} {...setProduits} handleShow={handleShow}/>
           ))}
         </tbody>
       </table>

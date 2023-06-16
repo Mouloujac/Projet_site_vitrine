@@ -25,10 +25,10 @@ const CommandeCard = ({ commande, user, setCommandes, updateCommandes }) => {
           </td>
           <td>{commande.user_id}</td>
           {commande.paniers.map(panier =>(
-            <p key={panier.id}>
-            <td>{panier.produit.nom}</td>
-            <td>{panier.produit.prix}</td>
-            </p>
+            <td key={panier.id}>
+            <p>{panier.produit.nom}</p>
+            <p>{panier.produit.prix}</p>
+            </td>
             ))}
         
         </tr>
