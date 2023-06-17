@@ -6,8 +6,9 @@ import axios from "./../../axios";
 import CreateForm from './components/CreateForm';
 import AdminLogin from './components/AdminLogin'
 import UpdateForm from './components/UpdateForm';
+import ImageUploader from './components/ImageUploader';
 import "./styles/Product.css"
-
+import "./styles/UpdateForm.css"
 const Admin = ({ user, setUser }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -50,15 +51,15 @@ const Admin = ({ user, setUser }) => {
   }
 
   const deleteProducts = async (produits) => {
-    axios.delete('/produits').then((response) => {
-      setProduits(response.data);
+    axios.delete(`/produits/${produits}`).then((response) => {
+     updateProducts()
       
     }).catch((error) => {
-      setProduits([])
-      console.error(error);
+      
     });
-  },  // [] = componentDidMount (exécuté une seule fois)
   }
+  
+  
   
   if (!user || user.isAdmin !== 1) {
     return (
@@ -71,10 +72,6 @@ const Admin = ({ user, setUser }) => {
 
   return (
     <section id="admin">
-      <ProductsListe user={user} updateProducts={updateProducts} produits={produits} setProduits={setProduits} handleShow={handleShow}/>
-      <div id="line">
-      <CreateForm user={user} updateProducts={updateProducts} />
-      <CommandesListe {...user} />
       {selectedProduct && (
         <UpdateForm
           user={user}
@@ -85,7 +82,12 @@ const Admin = ({ user, setUser }) => {
           handleShow={handleShow}
         />
       )}
+      <ProductsListe user={user} updateProducts={updateProducts} deleteProducts={deleteProducts} produits={produits} setProduits={setProduits} handleShow={handleShow}/>
+      <div id="line">
+      <CreateForm user={user} updateProducts={updateProducts} />
+      <CommandesListe {...user} />
       </div>
+      
     </section>
   );
 };

@@ -75,6 +75,7 @@ const UpdateForm = ({ user, produit, handleClose, handleUpdate }) => {
   };
 
   return (
+    <div id="modalParent">
     <modal>
       <button onClick={handleClose}>X</button>
       <form onSubmit={handleSubmit}>
@@ -173,6 +174,7 @@ const UpdateForm = ({ user, produit, handleClose, handleUpdate }) => {
         </button>
       </form>
     </modal>
+    </div>
   );
 };
 

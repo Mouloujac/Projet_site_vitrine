@@ -5,7 +5,7 @@ import axios from '../../../axios';
 
 import '../styles/Product.css'
 
-const ProductsListe = ({ user, updateProducts, produits, setProduits, handleShow }) => {
+const ProductsListe = ({ user, deleteProducts, produits, setProduits, handleShow }) => {
   
   useEffect(() => {
     const handleResize = () => {
@@ -49,7 +49,7 @@ const ProductsListe = ({ user, updateProducts, produits, setProduits, handleShow
     <table cellPadding="0" cellSpacing="0" border="0">
         <tbody>
           {produits.map((produit) => (
-            <ProductCard key={produit.id} produit={produit} {...setProduits} handleShow={handleShow}/>
+            <ProductCard key={produit.id} deleteProducts={deleteProducts} produit={produit} {...setProduits} handleShow={handleShow}/>
           ))}
         </tbody>
       </table>

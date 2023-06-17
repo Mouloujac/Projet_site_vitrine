@@ -1,4 +1,4 @@
-const ProductCard = ({ produit, handleShow }) => {
+const ProductCard = ({ produit, handleShow, deleteProducts }) => {
   return (
     <tr>
       <td>
@@ -9,10 +9,10 @@ const ProductCard = ({ produit, handleShow }) => {
       <td>{produit.description}</td>
       <td>{produit.prix} €</td>
       <td>
-        <button variant="primary" onClick={() => handleShow(produit)}>
+        <button  onClick={() => handleShow(produit)}>
           Modifier
         </button>
-        <button>
+        <button onClick={() => deleteProducts(produit.id)}>
           Supprimer
         </button>
       </td>

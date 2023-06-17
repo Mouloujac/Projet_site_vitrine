@@ -1,3 +1,23 @@
-modal{
-    background-color:violet;
+#modalParent{
+    
+    background-color: rgba(213, 216, 219, 0.485);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    padding-right: 3rem;
+    left: 3rem;
+    right:3rem;
+    z-index: 999;
+    bottom: -10rem;
+    top: 3rem;
+    border-radius: 0.6rem;
 }
+
+modal{
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    padding: 3rem;
+    border-radius: 0.6rem;
+}
+
