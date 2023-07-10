@@ -216,6 +216,9 @@
   font-family: 'Lato', sans-serif;
   font-weight: 700;
 }
+.cart:hover{
+  cursor: pointer;
+}
 
 .cart .price {
   -webkit-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
@@ -241,6 +244,10 @@
   transform: translate(-50%, -50%);
   font-size: 16px;
   color: #252525;
+}
+
+.img-info:hover{
+  cursor: pointer;
 }
 
 .cart .add-to-cart {

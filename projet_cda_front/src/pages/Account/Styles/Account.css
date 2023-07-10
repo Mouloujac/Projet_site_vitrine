@@ -1,0 +1,16 @@
+.accountForm{
+    
+}
+
+#h2Account{
+    color: black;
+    margin-bottom: 2rem;
+}
+
+#accountSession{
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    padding-left:2rem;
+    padding-right: 2rem;
+    width: 30rem;
+}

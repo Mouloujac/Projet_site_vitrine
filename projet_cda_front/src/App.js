@@ -1,7 +1,9 @@
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import { replaceCart } from "./redux/cartSlice";
+import { toast } from "react-toastify";
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home/Home';
@@ -13,28 +15,29 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Admin from './pages/Admin/Admin';
 import axios from './axios';
 import Cart from './pages/Cart/Cart';
-import Header from './components/Header'
+import Contact from './pages/Contact/Contact'
 import Footer from './components/Footer'
 
 import "./App.css"
-import { Provider } from 'react-redux';
-import store from './redux/store'
 
 
 
 
 
 const App = () => {
-
+  const [produits, setProduits] = useState([]);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const cartItems = useSelector((state) => JSON.parse(sessionStorage.getItem('Produit')));
+  const dispatch = useDispatch();
+
+  
+
   useEffect(() => {
 
     axios.get('/api/user').then((response) => {
       setUser(response.data);
-      
     }).catch((error) => {
       setUser()
     }).finally(() => {
@@ -49,8 +52,13 @@ const App = () => {
     navigate('/login');
   }
 
+  
+
   return (
     <div className="App">
+      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"></link>
       { !loading ? ( 
         <>
       <ToastContainer position="top-right"
@@ -64,12 +72,15 @@ const App = () => {
       />
       
         <Navbar user={user} logout={handleLogout} />
-        <Header/>
         
           <Routes>
               <Route path="/admin" element={<Admin user={user} setUser={setUser}/>} />
               <Route path="/" element={<Home user={user} />}/>
-              <Route path="/home" element={<Home user={user} />}/>
+              <Route path="/home" element={
+              <>
+              
+              <Home user={user} />
+              </>} />
               <Route path="/panier" element={ <Cart user={user} {...cartItems}/> } />
               <Route element={<ProtectedRoute user={user} />}>
                 <Route path="/account" element={<Account user={user} setUser={setUser} />} />
@@ -77,6 +88,7 @@ const App = () => {
               <Route path="/login" element={<Login user={user} setUser={setUser} />}/>
               <Route path="/inscription" element={<Inscription setUser={setUser} />}/>
               <Route path="/produits/:id" element={<Product  user={user} setUser={setUser} />} />
+              <Route path="/contact" element={<Contact user={user} setUser={setUser} />} />
           </Routes>
           <Footer/>
         </>
@@ -91,6 +103,7 @@ const App = () => {
     </div>
   );
 }
+
 const AppAdmin = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);

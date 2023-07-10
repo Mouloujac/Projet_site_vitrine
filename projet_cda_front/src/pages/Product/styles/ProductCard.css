@@ -1,0 +1,75 @@
+#productSection{
+    margin: 3rem;
+    
+}
+
+#productCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+#leftCard{
+    text-align: center;
+}
+#imgCard{
+    width: 19rem;
+}
+
+#downRight{
+    
+    display: flex;
+    flex-direction: column;
+}
+
+#infoCard{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    row-gap: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#infoCard > p{
+    
+    --tw-text-opacity: 1;
+    color: rgb(117, 117, 112)
+}
+
+#addButton{
+    margin-top: 1rem;
+    background-color: black;
+    color: grey;
+    width: fit-content;
+    padding: 1rem;
+    justify-self: center;
+    align-self: center;
+
+}
+#addButton:hover{
+    cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+    #productCard{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 2rem;
+    }
+
+    #addButton{
+        position: relative;
+        margin-top: 2rem;
+        background-color: black;
+        color: grey;
+        width: fit-content;
+        padding: 1rem;
+        bottom: 0;
+        align-self: flex-start;
+    }
+    #imgCard{
+        width: 28rem;
+    }
+}

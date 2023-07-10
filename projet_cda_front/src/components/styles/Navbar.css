@@ -186,7 +186,7 @@
   
   display: flex;
   justify-content: space-between;
-  background-color: #ffffffef;
+  background-color: #ffffff;
 }
 
 .log {
@@ -291,7 +291,7 @@
   #hamburger-menu {
     display: inline;
   }
-
+ 
   .page-wrapper {  
     position: relative;
     

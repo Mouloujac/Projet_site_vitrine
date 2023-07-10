@@ -47,7 +47,7 @@ const Navbar = ({ user, logout }) => {
       <label htmlFor="hamburger-input" id="hamburger-menu">
         <nav id="sidebar-menu">
           <div id="logoSidebarDiv">
-        <img src="/J.png" id="logoJSidebar"/>
+        <img src="/J.png" id="logoJSidebar" alt="logo"/>
         </div>
           <br />
           <ul>
@@ -57,7 +57,7 @@ const Navbar = ({ user, logout }) => {
               </Link>
             </li>
             <li className="headerLink">
-              <Link to="/panier" className="nav-link" onClick={handleLinkClick}>
+              <Link to="/contact" className="nav-link" onClick={handleLinkClick}>
                 Contact
               </Link>
             </li>
@@ -128,10 +128,10 @@ const Navbar = ({ user, logout }) => {
         </nav>
       </label>
       <Link to="/" >
-      <img src="J.png" className="hamburgerMenuImg"></img>
+      <img src="/J.png" className="hamburgerMenuImg" alt="menu"></img>
       </Link>
       <Link to="/panier" >
-        <img src="panier.png" className="hamburgerMenuImg"></img>
+        <img src="/panier.png" className="hamburgerMenuImg" alt="panier"></img>
       </Link>
       
       </div>
@@ -144,7 +144,7 @@ const Navbar = ({ user, logout }) => {
         <ul>
           {user && Object.keys(user).length > 0 ? (
             <>
-              <div className="logoDiv"><img src="/J.png" id="logoJ"/></div>
+              <div className="logoDiv"><img src="/J.png" id="logoJ" alt="logo"/></div>
               <div className="NavLink">
                 <li>
                   <Link to="/" className="nav-link">
@@ -152,7 +152,7 @@ const Navbar = ({ user, logout }) => {
                   </Link>
                 </li>
                 <li className="headerLink">
-                  <Link to="/panier" className="nav-link">
+                  <Link to="/contact" className="nav-link">
                     Contact
                   </Link>
                 </li>
@@ -190,7 +190,7 @@ const Navbar = ({ user, logout }) => {
             </>
           ) : (
             <>
-              <div className="logoDiv"><img src="/J.png" id="logoJ"/></div>
+              <div className="logoDiv"><img src="/J.png" id="logoJ" alt="logo"/></div>
               <div className="NavLink">
                 <li>
                   <Link to="/" className="nav-link">
@@ -198,7 +198,7 @@ const Navbar = ({ user, logout }) => {
                   </Link>
                 </li>
                 <li className="headerLink">
-                  <Link to="/panier" className="nav-link">
+                  <Link to="/contact" className="nav-link">
                     Contact
                   </Link>
                 </li>

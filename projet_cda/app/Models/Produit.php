@@ -45,6 +45,11 @@ class Produit extends Model
         return $this->belongsTo(Taille::class);
     }
 
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(Type::class);
+    }
+
 
     public function panier(): HasOne
     {

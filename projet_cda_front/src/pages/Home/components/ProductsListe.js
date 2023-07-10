@@ -38,8 +38,7 @@ const ProductsListe = ({ user }) => {
   };
   
   useEffect(() => {
-    axios
-      .get("/produits")
+    axios.get("api/produits")
       .then((response) => {
         const filteredProducts = response.data.filter(
           (produit) => produit.stock === true
@@ -89,7 +88,7 @@ const ProductsListe = ({ user }) => {
   }, [produits, selectedCategory, selectedSizes]);
 
   useEffect(() => {
-    let url = "/produits";
+    let url = "api/produits";
 
     if (selectedCategory.length > 0 || selectedSizes.length > 0) {
       const queryParams = [];
@@ -177,7 +176,7 @@ const ProductsListe = ({ user }) => {
       
         <div className="select-menu" >
   <div className="select-btn">
-    <span className="sBtn-text">Select your option</span>
+    <span className="sBtn-text">Trier par taille ou type</span>
     <i className="bx bx-chevron-down"></i>
   </div>
 
@@ -196,12 +195,12 @@ const ProductsListe = ({ user }) => {
           ))}
         </div>
     </li>
-    <li className="option">
-      
+    <div id="separator"></div>
+    <li className="option"> 
     <div id="size" className="category-row">
           {sizes.map((size) => (
             <label key={size.id} className="category-label">
-              {size.nom}
+              {size.nom}- 
               <input
                 type="checkbox"
                 checked={selectedSizes.includes(size.id)}

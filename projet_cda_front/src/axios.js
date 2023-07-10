@@ -1,5 +1,4 @@
 import Axios from 'axios'
-console.log(process.env.REACT_APP_API_URL)
 
 const axios = Axios.create({
     baseURL: 'http://localhost/',
@@ -14,3 +13,10 @@ const axios = Axios.create({
 })
 
 export default axios
+
+
+
+
+
+
+

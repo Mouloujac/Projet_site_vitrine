@@ -20,7 +20,6 @@ class commandeUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'panier_id' => ['required', 'integer', 'exists:paniers,id'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
             'statut' => ['required'],
         ];

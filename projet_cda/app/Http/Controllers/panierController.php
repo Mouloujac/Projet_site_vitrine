@@ -13,10 +13,9 @@ use App\Models\Produit;
 class panierController extends Controller
 {
     public function index(Request $request)
-{
+    {
     /** @var User $user */
     $user = auth()->user();
-    
     $produitIds = $request->input('produitIds', []);
     $produits = Produit::whereIn('id', json_decode($produitIds))->get();
 

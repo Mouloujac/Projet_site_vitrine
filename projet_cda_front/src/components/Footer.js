@@ -6,21 +6,21 @@ const Footer =() =>{
 
     return(
                 <section id="footer">
-        <div class="main-footer">
-            <div class="logoinfo" data-aos="fade-up">
+        <div className="main-footer">
+            <div className="logoinfo" data-aos="fade-up">
             <h2>Jacquotte & Fanfan</h2>
             <p>By Théo Lecolley</p>
 
-            <div class="contact-details">
+            <div className="contact-details">
                 <h1>Contact</h1>
                 <li>
-                <div class="fa fa-phone"></div><a href="tel:+919326048690">+33 6654321</a></li>
+                <div className="fa fa-phone"></div><a href="tel:+919326048690">+33 6654321</a></li>
                 <li>
-                <div class="fa fa-envelope"></div><a href="mailto:yourmail@gmail.com">Jacquotte.fanfan@gmail.com</a></li>
+                <div className="fa fa-envelope"></div><a href="mailto:yourmail@gmail.com">Jacquotte.fanfan@gmail.com</a></li>
                 
             </div>
         </div>
-        <div class="com " data-aos="fade-up">
+        <div className="com " data-aos="fade-up">
             <h1>About</h1>
             <ul>
             <li><Link to="/" >Accueil</Link></li>
@@ -29,14 +29,16 @@ const Footer =() =>{
             <li><Link to="/panier" ></Link></li>
             </ul>
         </div>
-        <div class="info" data-aos="fade-up">
+        <div className="info" data-aos="fade-up">
             <h1>Social Media</h1>
-            <div class="sociallogos">
-            <div class="logobox">
-                <a href="#" class="fa fa-instagram"></a>
-                <a href="#" class="fa fa-linkedin"></a>
-                <a href="#" class="fa fa-facebook"></a>
-                <a href="#" class="fa fa-youtube-play"></a>
+            <div className="sociallogos">
+            <div className="logobox">
+                <a href="https://www.instagram.com/jacquotte.et.fanfan/" >
+                    <img className="instagram" src="https://laravel-photos.s3.amazonaws.com/instagram.png"></img>
+                </a>
+                <a href="https://www.facebook.com/jacquotteetFanfan/?locale=fr_FR" >
+                    <img className="facebook" src="https://laravel-photos.s3.amazonaws.com/facebook.png"></img>
+                </a>
             </div>
             </div>
         </div>

@@ -23,6 +23,7 @@ class commandeStoreRequest extends FormRequest
             'id' => ['required', 'integer'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
             'statut' => ['required'],
+            'address' => ['required'],
         ];
     }
 }

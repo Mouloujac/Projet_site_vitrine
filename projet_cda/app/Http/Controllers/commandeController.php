@@ -14,7 +14,6 @@ class commandeController extends Controller
     public function index(Request $request)
     {
         $commandes = Commande::with('paniers.produit')->get();
-
         return response()->json($commandes);
     }
 
@@ -43,11 +42,11 @@ class commandeController extends Controller
         return view('commande.edit', compact('commande'));
     }
 
-    public function update(commandeUpdateRequest $request, Commande $commande): RedirectResponse
+    public function update(commandeUpdateRequest $request, Commande $commande)
     {
         $commande->update($request->validated());
 
-        return redirect()->route('commande.index');
+        return response()->json($commande);
     }
 
     public function destroy(Request $request, Commande $commande): RedirectResponse

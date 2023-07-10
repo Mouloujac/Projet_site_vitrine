@@ -4,7 +4,7 @@ const ProductCard = ({ produit, handleShow, deleteProducts }) => {
       <td>
         <input type="checkbox"></input>
       </td>
-      <td>{produit.image}</td>
+      <td><img className="productImage" src={ produit.image }></img></td>
       <td>{produit.nom}</td>
       <td>{produit.description}</td>
       <td>{produit.prix} €</td>

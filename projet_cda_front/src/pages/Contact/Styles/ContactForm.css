@@ -1,0 +1,53 @@
+#contactSection{
+    display: flex;
+    justify-content: center;
+    margin:0.5rem;
+}
+
+#contactForm{
+    justify-self: center;
+    gap: 4rem;
+    width: 28rem;
+}
+
+.formInputText{
+    margin-left: 2.85rem;
+    margin-bottom: 1rem;
+    height: 2rem;
+}
+.formInputEmail{
+    margin-left: 2.5rem;
+    margin-bottom: 1rem;
+    height: 2rem;
+}
+
+#messageInput{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+#messageLabel{
+    justify-self: start;
+}
+
+#message{
+    grid-column: 2;
+    height: 10rem;
+    width: 18rem;
+    margin-left: 1rem;
+}
+
+#contactButton{
+    margin: 2rem;
+    margin-left: 8rem;
+    padding: 1rem;
+    background-color: black;
+    color: aliceblue;
+    font-family: 'Poppins', sans-serif;
+    border: 1px black solid;
+    letter-spacing: 0.1rem;
+}
+
+#contactButton:hover{
+    cursor: pointer;
+}

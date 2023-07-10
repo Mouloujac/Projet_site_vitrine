@@ -20,16 +20,6 @@ Route::get('/', function () {
 require __DIR__.'/auth.php';
 
 
-Route::resource('produits', App\Http\Controllers\produitController::class);
-
-Route::resource('type', App\Http\Controllers\typeController::class);
-
-Route::resource('panier', App\Http\Controllers\panierController::class);
-
 Route::resource('user', App\Http\Controllers\userController::class);
-
-Route::resource('taille', App\Http\Controllers\tailleController::class);
-
-Route::resource('commande', App\Http\Controllers\commandeController::class);
 
 

@@ -19,6 +19,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::get('/produits', 'App\Http\Controllers\produitController@index');
+Route::get('/produits/{produit}', 'App\Http\Controllers\produitController@show');
 Route::post('/produits', 'App\Http\Controllers\produitController@store');
 Route::put('/produits/{produit}', 'App\Http\Controllers\produitController@update');
 Route::delete('/produits/{produit}', 'App\Http\Controllers\produitController@destroy');
@@ -30,3 +31,6 @@ Route::post('/stripe/payment', 'App\Http\Controllers\StripeController@makePaymen
 
 Route::get('/commandes', 'App\Http\Controllers\commandeController@index');
 Route::post('/commandes', 'App\Http\Controllers\commandeController@store');
+Route::put('/commandes/{commande}', 'App\Http\Controllers\commandeController@update');
+
+Route::post('/contact', 'App\Http\Controllers\ContactController@sendEmail');

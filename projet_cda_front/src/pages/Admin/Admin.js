@@ -18,7 +18,7 @@ const Admin = ({ user, setUser }) => {
   const handleClose = () => setSelectedProduct(null);
 
   useEffect(() => {
-    axios.get('/produits').then((response) => {
+    axios.get('/api/produits').then((response) => {
       setProduits(response.data);
       
     }).catch((error) => {
@@ -45,17 +45,17 @@ const Admin = ({ user, setUser }) => {
   
 
   const updateProducts = async () => {
-    const response = await axios.get('/produits');
+    const response = await axios.get('/api/produits');
     console.log("ok")
     setProduits(response.data);
   }
 
   const deleteProducts = async (produits) => {
-    axios.delete(`/produits/${produits}`).then((response) => {
+    axios.delete(`api/produits/${produits}`).then((response) => {
      updateProducts()
       
     }).catch((error) => {
-      
+      console.log(error)
     });
   }
   

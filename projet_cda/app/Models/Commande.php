@@ -20,6 +20,7 @@ class Commande extends Model
         'id',
         'user_id',
         'statut',
+        'address',
     ];
 
     /**

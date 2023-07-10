@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import axios from '../../axios';
 import { useNavigate } from 'react-router-dom';
+import "./Styles/Account.css"
 
 const Account = ({ user, setUser }) => {
   const initialValues = {
@@ -44,9 +45,12 @@ const Account = ({ user, setUser }) => {
   };
 
   return (
+    <section id="accountSession">
+    <h2 id="h2Account">Mon compte</h2>
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={update}>
+    
       {({ isSubmitting }) => (
-        <Form className='p-3 mx-auto w-fit-content login-form mt-5'>
+        <Form className='accountForm'>
           <div className="form-group ">
             <label htmlFor="username">Pseudo</label>
             <Field type="text" name="username" className="form-control" />
@@ -69,6 +73,8 @@ const Account = ({ user, setUser }) => {
         </Form>
       )}
     </Formik>
+    </section>
+
   );
 };
 

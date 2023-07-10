@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 
 function PaymentForm({ user }) {
     const [amount, setAmount] = useState(0);
+    const [address, setAddress] = useState(''); 
+
     const navigate = useNavigate();
 
     const cartItems = useSelector((state) => JSON.parse(sessionStorage.getItem('Produit')));
@@ -23,12 +25,11 @@ function PaymentForm({ user }) {
 
     const handleToken = async(token) => {
         try {
-            await axios.post("http://localhost/api/stripe/payment", {
+            await axios.post("/api/stripe/payment", {
                 stripeToken: token.id,
                 amount: totalPrice * 100, // Amount in cents
             }
             )
-            
             
             const today = new Date();
             const year = today.getFullYear().toString();
@@ -39,16 +40,17 @@ function PaymentForm({ user }) {
             const second = today.getSeconds().toString().padStart(0, '0');
             const commandeId = year + month + day + hour + minute + second + user.user.id;
 
-            
-            await axios.post('http://localhost/api/commandes', {
+            console.log(address)
+            await axios.post('/api/commandes', {
                 id: commandeId,
                 user_id: user.user.id,
                 statut: 0,
+                address: address,
             });
 
             for (let i = 0; i < cartItems.length; i++) {
                 console.log('Sending panier:', cartItems[i]);
-                await axios.post('http://localhost/api/paniers', {
+                await axios.post('/api/paniers', {
                     commande_id: commandeId,
                     produit_id: cartItems[i].id,
                     statut: 0,
@@ -69,13 +71,19 @@ function PaymentForm({ user }) {
         <>
             <p>Total: {totalPrice} EUR</p>
             {user.user ?(
-                  <>
+                <>
+                    <input
+                        type="text"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        placeholder="Adresse de livraison complete (Rue, nom de rue, ville, code postal)" 
+                    />
                    <StripeCheckout
-                stripeKey={process.env.REACT_APP_STRIPE_KEY}
-                token={handleToken}
-                amount={totalPrice * 100} // Amount in cents
-                currency="EUR"/>
-                </>
+                        stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                        token={handleToken}
+                        amount={totalPrice * 100} // Amount in cents
+                        currency="EUR"/>
+                    </>
                 ) : (
                 <Nav variant="pills">
                   <Nav.Item>

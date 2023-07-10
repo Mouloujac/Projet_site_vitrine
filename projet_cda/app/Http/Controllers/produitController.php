@@ -17,11 +17,6 @@ class produitController extends Controller
         return response()->json($produits);
     }
 
-    public function create(Request $request): View
-    {
-        return view('produit.create');
-    }
-
     public function store(produitStoreRequest $request)
     {
         $produit = Produit::create($request->validated());
@@ -31,13 +26,8 @@ class produitController extends Controller
 
     public function show(Request $request, $id)
     {
-        $produit = Produit::findOrFail($id);
+        $produit = Produit::with('taille', 'type')->findOrFail($id);
         return response()->json($produit);
-    }
-
-    public function edit(Request $request, produit $produit): View
-    {
-        return view('produit.edit', compact('produit'));
     }
 
     public function update(produitUpdateRequest $request, produit $produit)

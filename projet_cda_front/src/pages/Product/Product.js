@@ -1,35 +1,42 @@
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react'
-import axios from '../../axios'
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import axios from '../../axios';
+import { Link } from 'react-router-dom';
 import ProductCard from './components/ProductCard';
+import "./styles/Product.css"
 
 function Product() {
-  const produitId = useParams(); // récupère l'identifiant du produit depuis les paramètres d'URL
-  const [produit, setProduit] = useState([]); // Produits
-  console.log(produitId.id)
-  useEffect(()  => {
-    axios.get(`/produits/${produitId.id}`).then((response) => {
-      
-      setProduit(response.data);
-      console.log(response.data)
-    }).catch((error) => {
-      console.error(error);
-    });
-  }, [])
+  const { id } = useParams();
+  const [produit, setProduit] = useState(null); // Utilisation de null pour indiquer que les données ne sont pas encore chargées
+
+  useEffect(() => {
+    axios
+      .get(`api/produits/${id}`)
+      .then((response) => {
+        setProduit(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [id]);
+
+  // Si le produit n'est pas encore chargé, affichez un message de chargement
+  if (!produit) {
+    return <p>Chargement en cours...</p>;
+  }
+
   return (
     <>
-    <nav>
-     <Link to="/"><h1>J&J</h1></Link>
-     </nav>
-    <div>
-      <ProductCard {...produit}/>
-    </div>
+      <nav id="retour">
+        <Link to="/" >
+          Retour
+        </Link>
+      </nav>
+      <div>
+        <ProductCard {...produit} />
+      </div>
     </>
-  )
-  // utilisation de l'identifiant pour charger les détails du produit depuis l'API et afficher les informations sur le produit
-  // ...
-};
-
+  );
+}
 
 export default Product;

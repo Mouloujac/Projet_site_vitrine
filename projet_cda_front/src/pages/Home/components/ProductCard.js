@@ -1,7 +1,5 @@
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { addToCart } from "../../../redux/cartSlice";
 import { replaceCart } from "../../../redux/cartSlice";
 import axios from "../../../axios";
 import { useNavigate } from "react-router-dom";
@@ -13,8 +11,7 @@ const ProductCard = ({ produit, setProduits }) => {
   const cart = useSelector((state) => state.cart);
 
   const handleAddToCart = (produit) => {
-    axios
-      .put(`/api/produits/${produit.id}`, {
+    axios.put(`/api/produits/${produit.id}`, {
         nom: produit.nom,
         description: produit.description,
         prix: produit.prix,
@@ -25,8 +22,7 @@ const ProductCard = ({ produit, setProduits }) => {
       })
       .then(() => {
         // Récupérer les nouveaux produits depuis l'API et mettre à jour l'état
-        axios
-          .get("/produits")
+        axios.get("api/produits")
           .then((response) => {
             const filteredProducts = response.data.filter(
               (produit) => produit.stock === true
@@ -36,11 +32,10 @@ const ProductCard = ({ produit, setProduits }) => {
           .catch((error) => {
             console.error(error);
           });
-      })
+        })
       .catch((error) => {
         console.error(error);
       });
-
     let sessionPanier = sessionStorage.getItem("Produit");
     let Panier;
     if (sessionPanier) {
@@ -66,8 +61,8 @@ const ProductCard = ({ produit, setProduits }) => {
       <div className="row">
         <div className="el-wrapper">
           <div className="box-up">
-            <img className="imgProduct" src="/dress.png" alt="" />
-            <div className="img-info" >
+            <img className="imgProduct" src={produit.image} alt="" onClick={handleClick}/>
+            <div className="img-info" onClick={handleClick} >
               <div className="info-inner" >
                 <span className="p-name">{produit.nom}</span>
                 <span className="size">
@@ -75,7 +70,7 @@ const ProductCard = ({ produit, setProduits }) => {
                 </span>
               </div>
               <div className="a-size">
-                <span className="p-company"onClick={handleClick}>{produit.description}</span>
+                <span className="p-company">{produit.description}</span>
               </div>
             </div>
           </div>

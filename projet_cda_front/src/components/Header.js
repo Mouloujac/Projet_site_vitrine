@@ -8,7 +8,9 @@ const Header = () => {
 
     return(
         <div id='headerContainer'>
-            <div id="divTest"></div>
+            <div id="divTest">
+                <img id="banner" src ="https://laravel-photos.s3.amazonaws.com/banner.jpg" alt="banniere"></img>
+            </div>
         </div>
     )
 

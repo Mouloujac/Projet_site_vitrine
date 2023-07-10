@@ -1,7 +1,8 @@
 import { useState } from "react";
 import '../styles/Product.css'
+import axios from "../../../axios"
 
-const CommandeCard = ({ commande, user, setCommandes, updateCommandes }) => {
+const CommandeCard = ({ commande, user, setCommandes, }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -11,28 +12,40 @@ const CommandeCard = ({ commande, user, setCommandes, updateCommandes }) => {
     try {
       handleClose();
       console.log("ok commandes");
-      updateCommandes(updateCommande);
+
+      // Effectuer la requête pour mettre à jour le stock
+      const updatedCommande = { ...updateCommande, statut: 1 };
+      await axios.put(`/api/commandes/${updatedCommande.id}`
+        , updatedCommande);
+      const response = await axios.get('/api/commandes');
+      const updatedCommandes = response.data;
+      setCommandes(updatedCommandes);
+      
     } catch (error) {
       console.log(error);
     }
   };
 
+  const prixTotal = commande.paniers.reduce((acc, panier) => acc + panier.produit.prix, 0);
+
   return (
-    
-        <tr>
+      <tbody>
+        <tr key={commande.id}>
           <td>
             {commande.id} 
           </td>
           <td>{commande.user_id}</td>
-          {commande.paniers.map(panier =>(
-            <td key={panier.id}>
-            <p>{panier.produit.nom}</p>
-            <p>{panier.produit.prix}</p>
-            </td>
-            ))}
-        
+          <td >
+            {commande.paniers.map(panier =>(
+          <p>{panier.produit.nom}</p>
+          ))}
+          </td>
+          <td>{prixTotal}</td>
+          <td>{commande.address}</td>
+          <td>{commande.statut ? "Envoyé" : "En cours" }</td>
+          <td><button onClick={() => handleUpdate(commande)}>Envoyer</button></td>
         </tr>
-    
+      </tbody>
   );
 };
 
