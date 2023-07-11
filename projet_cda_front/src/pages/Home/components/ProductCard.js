@@ -46,8 +46,6 @@ const ProductCard = ({ produit, setProduits }) => {
 
     Panier.push(produit);
     sessionStorage.setItem("Produit", JSON.stringify(Panier));
-    console.log(Panier);
-    dispatch(replaceCart(Panier));
     toast.success("Le produit a été ajouté au panier");
   };
 
@@ -83,7 +81,7 @@ const ProductCard = ({ produit, setProduits }) => {
             <a className="cart" >
               <span className="price">{produit.prix}€</span>
               <span className="add-to-cart">
-                <span className="txt" onClick={() => handleAddToCart(produit)}>Add in cart</span>
+                <span className="txt" onClick={() => handleAddToCart(produit)}>Ajouter au panier</span>
               </span>
             </a>
           </div>

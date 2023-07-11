@@ -1,0 +1,17 @@
+.loginForm{
+    width: 30rem;
+    position: absolute;
+    padding:3rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.098);
+    border-radius: 1rem;
+}
+
+#loginH3{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -7,38 +7,17 @@ import "../../../components/styles/Navbar.css";
 
 const ProductsListe = ({ user }) => {
   const [produits, setProduits] = useState([]); // Produits
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategory, setselectedCategory] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [category, setcategory] = useState([]);
   const [sizes, setSizes] = useState([]);
 
-  const handleTaillesInput = () => {
-    let checkbox = document.getElementById("taillesInput");
-    let Tailles = document.getElementById("tailles");
-    if (checkbox.checked) {
-      Tailles.classList.remove("taillesNone");
-      Tailles.classList.add("taillesVisible");
-    } else {
-      Tailles.classList.remove("taillesVisible");
-      Tailles.classList.add("taillesNone");
-    }
-  };
-
-  const handleCategoryInput = () => {
-    let checkbox = document.getElementById("categoryInput");
-    let Category = document.getElementById("category");
-    if (checkbox.checked) {
-      Category.classList.remove("categoryNone");
-      Category.classList.add("categoryVisible");
-    } else {
-      Category.classList.remove("categoryVisible");
-      Category.classList.add("categoryNone");
-    }
-  };
-  
   useEffect(() => {
-    axios.get("api/produits")
+    axios
+      .get("api/produits")
       .then((response) => {
         const filteredProducts = response.data.filter(
           (produit) => produit.stock === true
@@ -53,9 +32,7 @@ const ProductsListe = ({ user }) => {
 
   const handleCategoryChange = (categoryId) => {
     if (selectedCategory.includes(categoryId)) {
-      setselectedCategory(
-        selectedCategory.filter((id) => id !== categoryId)
-      );
+      setselectedCategory(selectedCategory.filter((id) => id !== categoryId));
     } else {
       setselectedCategory([...selectedCategory, categoryId]);
     }
@@ -102,7 +79,7 @@ const ProductsListe = ({ user }) => {
         const sizesQueryParam = selectedSizes.join(",");
         queryParams.push(`taille_id=${sizesQueryParam}`);
       }
- 
+
       url += `?${queryParams.join("&")}`;
     }
 
@@ -119,8 +96,6 @@ const ProductsListe = ({ user }) => {
         console.error(error);
       });
   }, [selectedCategory, selectedSizes]);
-
-  
 
   useEffect(() => {
     axios
@@ -144,79 +119,89 @@ const ProductsListe = ({ user }) => {
       });
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
+
+  const pageNumbers = Math.ceil(filteredProducts.length / itemsPerPage);
+
+  const handleClickPrevious = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleClickNext = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+
   useEffect(() => {
     const optionMenu = document.querySelector(".select-menu");
     const selectBtn = optionMenu.querySelector(".select-btn");
     const options = optionMenu.querySelectorAll(".option");
     const sBtn_text = optionMenu.querySelector(".sBtn-text");
-  
+
     const handleClick = () => {
       optionMenu.classList.toggle("active");
     };
-  
+
     selectBtn.addEventListener("click", handleClick);
-  
+
     options.forEach((option) => {
       option.addEventListener("click", () => {
         let selectedOption = option.querySelector(".option-text").innerText;
         sBtn_text.innerText = selectedOption;
-  
+
         optionMenu.classList.remove("active");
       });
     });
-  
+
     return () => {
       selectBtn.removeEventListener("click", handleClick);
     };
   }, []);
-  
+
   return (
     <div id="productPage">
-      
-      
-        <div className="select-menu" >
-  <div className="select-btn">
-    <span className="sBtn-text">Trier par taille ou type</span>
-    <i className="bx bx-chevron-down"></i>
-  </div>
+      <div className="select-menu">
+        <div className="select-btn">
+          <span className="sBtn-text">Trier par taille ou type</span>
+          <i className="bx bx-chevron-down"></i>
+        </div>
 
-  <ul className="options">
-    <li className="option">
-    <div id="types" className="category-row">
-          {category.map((category) => (
-            <label key={category.id} className="category-label">
-              {category.nom}
-              <input
-                type="checkbox"
-                checked={selectedCategory.includes(category.id)}
-                onChange={() => handleCategoryChange(category.id)}
-              />
-            </label>
-          ))}
-        </div>
-    </li>
-    <div id="separator"></div>
-    <li className="option"> 
-    <div id="size" className="category-row">
-          {sizes.map((size) => (
-            <label key={size.id} className="category-label">
-              {size.nom}- 
-              <input
-                type="checkbox"
-                checked={selectedSizes.includes(size.id)}
-                onChange={() => handleSizeChange(size.id)}
-              />
-              
-            </label>
-          ))}
-        
-        </div>
-    </li>
-  
-  </ul>
-</div>
+        <ul className="options">
+          <li className="option">
+            <div id="types" className="category-row">
+              {category.map((category) => (
+                <label key={category.id} className="category-label">
+                  {category.nom}
+                  <input
+                    type="checkbox"
+                    checked={selectedCategory.includes(category.id)}
+                    onChange={() => handleCategoryChange(category.id)}
+                  />
+                </label>
+              ))}
+            </div>
+          </li>
+          <div id="separator"></div>
+          <li className="option">
+            <div id="size" className="category-row">
+              {sizes.map((size) => (
+                <label key={size.id} className="category-label">
+                  {size.nom}-
+                  <input
+                    type="checkbox"
+                    checked={selectedSizes.includes(size.id)}
+                    onChange={() => handleSizeChange(size.id)}
+                  />
+                </label>
+              ))}
+            </div>
+          </li>
+        </ul>
+      </div>
       <div className="page-wrapper">
-        {filteredProducts.map((produit) => (
+      {currentItems.map((produit) => (
           <ProductCard
             key={produit.id}
             produit={produit}
@@ -224,6 +209,23 @@ const ProductsListe = ({ user }) => {
             setProduits={setProduits}
           />
         ))}
+        
+      </div>
+      <div className="pagination">
+      <button
+        className="pagination-btn"
+        onClick={handleClickPrevious}
+        disabled={currentPage === 1}
+      >
+        Previous
+      </button>
+      <button
+        className="pagination-btn"
+        onClick={handleClickNext}
+        disabled={currentPage === pageNumbers}
+      >
+        Next
+      </button>
       </div>
     </div>
   );

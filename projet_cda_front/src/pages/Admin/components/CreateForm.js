@@ -7,10 +7,11 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
   const [formState, setFormState] = useState({
     nom: "",
     description: "",
-    prix: "",
+    prix: "0",
     image: "",
     type_id:"",
     taille_id: "",
+    previewImage:"",
   });
   const [taille, setTaille] = useState([]);
   const [type, setType] = useState([]);
@@ -59,17 +60,15 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
       setPreviewImage(URL.createObjectURL(file)); // Mettre à jour l'aperçu de l'image
     }
   };
+  
 
  
   const handleSubmit = (event) => {
     event.preventDefault();
     
     const imageFile = event.target.elements.imageFile.files[0];
-    console.log(formState['nom'])
     // Définissez le nom de fichier pour l'image sur S3 (par exemple, utilisez un nom unique ou un ID d'article)
     const fileName = `${formState["nom"]}-${Date.now()}.${imageFile.name.split('.').pop()}`;
-
-  
     // Configurez les options de téléchargement de l'image vers S3
     const uploadParams = {
       Bucket: 'laravel-photos',
@@ -85,24 +84,24 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
         // Une fois le téléchargement terminé, récupérez l'URL de l'image sur S3
         const imageUrl = data.Location;
         // Effectuez la demande POST avec l'URL de l'image au serveur backend
-        axios
-          .post("/api/produits", { ...formState, image: imageUrl })
-          .then((response) => {
-            // Effacez le formulaire après une soumission réussie
-            setFormState({
-              nom: "",
-              description: "",
-              prix: "",
-              image: "",
-              taille_id: "",
-              type_id: "",
-              imageFile: "",
-            });
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-          updateProducts()
+        axios.post("/api/produits", { ...formState, image: imageUrl })
+    .then((response) => {
+      // Effacez le formulaire après une soumission réussie
+      setFormState({
+        nom: "",
+        description: "",
+        prix: "",
+        image: "",
+        taille_id: "",
+        type_id: "",
+      });
+      setPreviewImage(null); // Réinitialisez l'aperçu de l'image
+      event.target.reset(); // Réinitialisez l'input file pour effacer la sélection du fichier
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+      updateProducts()
       }
     });   
   };
@@ -195,7 +194,7 @@ const CreateForm = ({ user, handleClose, updateProducts }) => {
       </div>
       {previewImage && ( 
         <div className="preview-image">
-          <img src={previewImage} alt="Preview" />
+          <img src={previewImage} alt="Preview" id="previewImage"/>
         </div>
       )}
 

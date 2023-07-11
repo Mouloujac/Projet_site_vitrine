@@ -74,6 +74,7 @@ function PaymentForm({ user }) {
                 <>
                     <input
                         type="text"
+                        id="adressInput"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         placeholder="Adresse de livraison complete (Rue, nom de rue, ville, code postal)" 
@@ -87,7 +88,7 @@ function PaymentForm({ user }) {
                 ) : (
                 <Nav variant="pills">
                   <Nav.Item>
-                    <NavLink to="/login" className="nav-link">Connexion</NavLink> 
+                    <NavLink to="/login" className="buttonConnexion">Connexion obligatoire</NavLink> 
                   </Nav.Item>
                 </Nav>
                 )}

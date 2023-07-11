@@ -117,8 +117,7 @@
 
 .select-menu .options {
   position: absolute;
-  width: 330px;
-  overflow-y: auto;
+  width: 340px;
   max-height: 295px;
   padding: 10px;
   margin-top: 10px;
@@ -166,7 +165,7 @@
 .select-menu.active .options {
   transform: translateY(0);
   opacity: 1;
-  width: 21rem;
+  width: 22rem;
 }
 
 /* Ajoutez les préfixes de navigateur nécessaires aux propriétés CSS appropriées */
@@ -190,4 +189,24 @@
     transform: translate3d(0, 20px, 0);
     opacity: 0;
   }
+}
+
+
+.pagination{
+  text-align: center;
+  margin: 2rem;
+}
+
+.pagination-btn{
+  width: 5rem;
+  height: 2rem;
+  margin:1rem;
+  background-color: #f8c560;
+}
+.pagination-btn:hover{
+  width: 5rem;
+  height: 2rem;
+  margin:1rem;
+  background-color: #b88b31;
+  cursor: pointer;
 }

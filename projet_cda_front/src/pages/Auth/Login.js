@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import axios from '../../axios';
 import { useNavigate } from 'react-router-dom';
+import "./Styles/Login.css"
 
 const Login = ({user, setUser }) => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -55,15 +56,18 @@ const Login = ({user, setUser }) => {
 
   return (
     <>
+    <h3 id="loginH3">Page de connexion</h3>
       {authenticated ? (
         <div>
           <p>Bienvenue {user.email}</p>
           <button onClick={handleLogout}>Déconnexion</button>
         </div>
       ) : (
+        
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={login}>
+         
           {({ isSubmitting }) => (
-            <Form className='p-3 mx-auto w-fit-content login-form mt-5'>
+            <Form className='loginForm'>
               <div className="form-group ">
                 <label htmlFor="email">Email</label>
                 <Field type="email" name="email" className="form-control"/>

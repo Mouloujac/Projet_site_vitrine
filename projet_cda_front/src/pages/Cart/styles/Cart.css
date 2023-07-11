@@ -10,3 +10,35 @@
     flex-direction: column;
     
 }
+
+@media screen and (min-width: 600px){
+    #cartContainer{
+        padding:2rem;
+        margin-left: 12rem;
+        margin-right: 12rem;
+        margin-bottom: 4rem;
+        background-color: rgb(255, 255, 255);
+    }
+    
+    #adressInput{
+        width: 30rem;
+        height: 2rem;
+        margin: 2rem;
+    }
+
+}
+
+.buttonConnexion{
+    background-color: #6ad074;
+    text-decoration: none;
+    color:#444857; 
+    padding:1rem;
+    transition: all ease-in-out;
+}
+
+.buttonConnexion:hover{
+    background-color: #54925a;
+    text-decoration: none;
+    color:#ffffff; 
+    padding:1rem;
+}

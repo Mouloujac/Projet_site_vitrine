@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import axios from '../../axios'
 import { useNavigate } from 'react-router-dom';
+import "./Styles/Inscription.css"
 
 const Inscription = ({redirect, setUser}) => {
 
@@ -74,36 +75,50 @@ const Inscription = ({redirect, setUser}) => {
    };
 
   return (
+    <>
+    <h3 id="inscriptionH3">Inscription</h3>
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={register}>
       {({ isSubmitting }) => (
-        <Form className='p-3 mx-auto w-fit-content login-form mt-5'>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
+        <Form className='inscriptionForm'>
+          <label htmlFor="name">Name</label>
+          <ErrorMessage className="errorInscription" name="name" component="div" />
+          <div className="inscriptionFormGroup">
+           
             <Field type="text" name="name" className="form-control"/>
-            <ErrorMessage name="name" component="div" />
+           
+
           </div>
-          <div className="form-group mt-4">
-            <label htmlFor="email">Email</label>
+           
+          <label htmlFor="email">Email</label>
+          <ErrorMessage className="errorInscription" name="email" component="div" />
+
+          <div className="inscriptionFormGroup ">
+           
             <Field type="email" name="email" className="form-control emailInscription"/>
-            <ErrorMessage name="email" component="div" />
           </div>
-          <div className="form-group mt-4">
-            <label htmlFor="password">Mot de passe</label>
+          <label htmlFor="password">Mot de passe</label>
+                    <ErrorMessage className="errorInscription" name="password" component="div" />
+
+          <div className="inscriptionFormGroup ">
+            
             <Field type="password" name="password" className="form-control"/>
-            <ErrorMessage name="password" component="div" />
+            
           </div>
-          <div className="form-group mt-4">
-            <label htmlFor="password_confirmation">Confirmer votre mot de passe</label>
+          <label htmlFor="password_confirmation">Confirmer votre mot de passe</label>
+          <ErrorMessage className="errorInscription" name="password_confirmation" component="div" />
+
+          <div className="inscriptionFormGroup ">
             <Field type="password" name="password_confirmation" className="form-control"/>
-            <ErrorMessage name="password_confirmation" component="div" />
-          </div>
+          </div>          
+
           <div className='error-message-register mt-3 text-danger'></div>
-          <button type="submit"  className="btn btn-primary mt-4">
+          <button type="submit"  className="btn btn-primary ">
             S'inscrire
           </button>
         </Form>
       )}
     </Formik>
+    </>
   );
 };
 export default Inscription;

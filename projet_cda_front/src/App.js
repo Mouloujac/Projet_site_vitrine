@@ -31,6 +31,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const cartItems = useSelector((state) => JSON.parse(sessionStorage.getItem('Produit')));
   const dispatch = useDispatch();
+  const location = useLocation(); // Import the useLocation hook
 
   
 
@@ -90,7 +91,7 @@ const App = () => {
               <Route path="/produits/:id" element={<Product  user={user} setUser={setUser} />} />
               <Route path="/contact" element={<Contact user={user} setUser={setUser} />} />
           </Routes>
-          <Footer/>
+          {!location.pathname.includes('/login') && !location.pathname.includes('/inscription') && <Footer />}
         </>
         
       ) : (
